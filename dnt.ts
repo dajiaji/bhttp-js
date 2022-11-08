@@ -9,6 +9,7 @@ await build({
   test: true,
   declaration: true,
   scriptModule: "umd",
+  importMap: "./import-map.json",
   compilerOptions: {
     lib: ["es2021", "dom"],
   },

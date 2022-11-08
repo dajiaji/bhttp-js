@@ -16,6 +16,7 @@
       "include": ["src/", "test/"]
     }
   },
+  "importMap": "./import-map.json",
   "tasks": {
     "test": "deno fmt && deno lint && deno test test -A --fail-fast --doc --coverage=coverage --parallel --allow-read",
     "cov": "deno coverage ./coverage --lcov --exclude='test' --exclude='bundles'",
