@@ -10,8 +10,8 @@
 </div>
 
 <div align="center">
-A TypeScript implementation of <a href="https://datatracker.ietf.org/doc/html/rfc9292">Binary Representation of HTTP Messages (RFC9292)</a> using <a href="https://developer.mozilla.org/en-US/docs/Web/API/Request">Request</a>/<a href="https://developer.mozilla.org/en-US/docs/Web/API/Response">Response</a> interface of the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">Fetch API</a>.
-This module works on web browsers, Node.js, Deno.
+A <a href="https://datatracker.ietf.org/doc/html/rfc9292">BHTTP (RFC9292: Binary Representation of HTTP Messages)</a> Encoder and Decoder written in TypeScript for <a href="https://developer.mozilla.org/en-US/docs/Web/API/Request">Request</a>/<a href="https://developer.mozilla.org/en-US/docs/Web/API/Response">Response</a> interface of the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">Fetch API</a>.
+This module works on Node.js and Deno.
 </div>
 
 <p></p>
