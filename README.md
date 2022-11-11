@@ -110,7 +110,7 @@ async function doBHttp() {
     },
   });
 
-  // Decode a Request object to a BHTTP binary string.
+  // Encode a Request object to a BHTTP binary string.
   const encoder = new BHttpEncoder();
   const binReq = await encoder.encodeRequest(req);
 
@@ -138,7 +138,7 @@ const req = new Request("https://www.example.com/hello.txt", {
   },
 });
 
-// Decode a Request object to a BHTTP binary string.
+// Encode a Request object to a BHTTP binary string.
 const encoder = new BHttpEncoder();
 const binReq = await encoder.encodeRequest(req);
 
