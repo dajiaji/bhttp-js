@@ -5,6 +5,32 @@ import { BHttpEncoder } from "../src/encoder.ts";
 import { BHttpDecoder } from "../src/decoder.ts";
 
 describe("BHttpDecoder/Encoder", () => {
+  describe("GET", () => {
+    it("should encode and decode a GET request.", async () => {
+      const req = new Request("https://www.example.com/hello.txt", {
+        method: "GET",
+        headers: {
+          "User-Agent": "curl/7.16.3 libcurl/7.16.3 OpenSSL/0.9.7l zlib/1.2.3",
+          "Accept-Language": "en, mi",
+        },
+      });
+      // Decode a Request object to a BHTTP binary string.
+      const encoder = new BHttpEncoder();
+      const binReq = await encoder.encodeRequest(req);
+
+      // Decode the BHTTP binary string to a Request object.
+      const decoder = new BHttpDecoder();
+      const decodedReq = decoder.decodeRequest(binReq);
+
+      // assert
+      assertEquals(
+        decodedReq.headers.get("user-agent"),
+        "curl/7.16.3 libcurl/7.16.3 OpenSSL/0.9.7l zlib/1.2.3",
+      );
+      assertEquals(decodedReq.headers.get("accept-language"), "en, mi");
+    });
+  });
+
   describe("POST", () => {
     it("should encode and decode a POST request.", async () => {
       const req = new Request("https://www.example.com/hello.txt", {
