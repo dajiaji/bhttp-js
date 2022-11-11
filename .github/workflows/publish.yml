@@ -11,16 +11,11 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
           registry-url: https://registry.npmjs.org/
       - uses: denoland/setup-deno@v1
         with:
           deno-version: v1.x
-      - name: Run eggs
-        run: |
-          deno install -A --unstable https://x.nest.land/eggs@0.3.4/eggs.ts
-          eggs link ${{ secrets.NEST_API_KEY }}
-          eggs publish --yes --version $(git describe --tags $(git rev-list --tags --max-count=1))
       - name: Run dnt & minify
         run: |
           npm install -g esbuild
