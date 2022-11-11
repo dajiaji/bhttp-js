@@ -24,6 +24,7 @@ This module works on web browsers, Node.js, Deno.
 
 ## Index
 
+- [Supported Environments](#supported-environments)
 - [Installation](#installation)
   - [Web Browser](#web-browser)
   - [Node.js](#nodejs)
@@ -33,6 +34,11 @@ This module works on web browsers, Node.js, Deno.
   - [Deno](#deno)
 - [Contributing](#contributing)
 - [References](#references)
+
+## Supported Environments
+
+- **Node.js**: 18.x, 19.x
+- **Deno**: 1.x
 
 ## Installation
 
