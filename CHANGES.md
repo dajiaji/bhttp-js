@@ -4,6 +4,6 @@
 
 ## Version 0.1.0
 
-Released 2022-mm-dd
+Released 2022-11-11
 
-- TODO: First public preview release.
+- First public preview release.
