@@ -52,7 +52,7 @@ describe("BHttpDecoder/Encoder", () => {
     });
   });
 
-  describe("Decode indeterminate-length response and encode it to BHTTP again", () => {
+  describe("Decode indeterminate-length request and encode it to BHTTP again", () => {
     it("should decode an example Request in RFC9292 properly", async () => {
       const exampleData = hexStringToBytes(
         "0203474554056874747073000a2f6865" +
@@ -174,6 +174,38 @@ describe("BHttpDecoder/Encoder", () => {
         td.decode(new Uint8Array(body)),
         "Hello World! My content includes a trailing CRLF.\r\n",
       );
+    });
+  });
+
+  describe("Decode known-length response and encode it to BHTTP again", () => {
+    it("should decode an example Response in RFC9292 properly", async () => {
+      const exampleData = hexStringToBytes(
+        "0140c8001d5468697320636f6e74656e" +
+          "7420636f6e7461696e732043524c462e" +
+          "0d0a0d07747261696c65720474657874",
+      );
+      const decoder = new BHttpDecoder();
+      let res = decoder.decodeResponse(exampleData);
+
+      // assert
+      assertEquals(res.status, 200);
+      // let trailers = await res.trailer;
+      // assertEquals(trailers, undefined);
+      // const body = await res.text();
+      // assertEquals(body, "This content contains CRLF.\r\n");
+
+      const encoder = new BHttpEncoder();
+      const encodedRes = await encoder.encodeResponse(res);
+
+      // assertEquals(exampleData, encodedRes);
+      res = decoder.decodeResponse(encodedRes);
+
+      // assert
+      assertEquals(res.status, 200);
+      // trailers = await res.trailer;
+      // assertEquals(trailers, undefined);
+      const body = await res.text();
+      assertEquals(body, "This content contains CRLF.\r\n");
     });
   });
 });
