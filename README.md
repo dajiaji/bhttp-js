@@ -33,7 +33,7 @@ This module works on web browsers, Node.js, Deno and Cloudflare Workers.
   - [Deno](#deno)
   - [Cloudflare Workers](#cloudflare-workers)
 - [Usage](#usage)
-  - [Web Browser / Cloudflare Workers](#web-browser-cloudflare-workers)
+  - [Web Browser / Cloudflare Workers](#web-browser--cloudflare-workers)
   - [Node.js](#nodejs-1)
   - [Deno](#deno-1)
 - [Contributing](#contributing)
