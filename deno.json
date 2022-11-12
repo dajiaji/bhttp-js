@@ -5,15 +5,25 @@
         "README.md",
         "CHANGES.md",
         "deno.json",
+        "import-map.json",
         "dnt.ts",
+        "samples/",
         "src/",
         "test/"
+      ],
+      "exclude": [
+        "samples/node/node_modules",
+        "test/playwright/node_modules"
       ]
     }
   },
   "lint": {
     "files": {
-      "include": ["src/", "test/"]
+      "include": ["samples/", "src/", "test/"],
+      "exclude": [
+        "samples/node/node_modules",
+        "test/playwright/node_modules"
+      ]
     }
   },
   "importMap": "./import-map.json",
