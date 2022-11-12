@@ -31,10 +31,10 @@
             throw new Error("method mismatch.");
           }
           if (decodedReq.headers.get("user-agent") !== "curl/7.16.3 libcurl/7.16.3") {
-            throw new Error("user-agent mismatch.");
+            throw new Error("user-agent mismatch:", decodedReq.headers.get("user-agent"));
           }
           if (decodedReq.headers.get("accept-language") !== "en, mi") {
-            throw new Error("user-agent mismatch.");
+            throw new Error("accept-language mismatch.");
           }
           pass++;
 
@@ -103,7 +103,7 @@
             throw new Error("url mismatch.");
           }
           if (decodedReq.headers.get("accept-language") !== "en, mi") {
-            throw new Error("user-agent mismatch.");
+            throw new Error("accept-language mismatch.");
           }
           pass++;
 
@@ -138,7 +138,7 @@
             throw new Error("url mismatch.");
           }
           if (decodedReq.headers.get("accept-language") !== "en, mi") {
-            throw new Error("user-agent mismatch.");
+            throw new Error("accept-language mismatch.");
           }
           pass++;
 
