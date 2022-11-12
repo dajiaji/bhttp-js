@@ -20,7 +20,9 @@ describe("BHttpDecoder/Encoder", () => {
 
       // Decode the BHTTP binary string to a Request object.
       const decoder = new BHttpDecoder();
-      const decodedReq = decoder.decodeRequest(binReq);
+      let decodedReq = decoder.decodeRequest(binReq);
+      // ArrayBuffer is also supported.
+      decodedReq = decoder.decodeRequest(binReq.buffer);
 
       // assert
       assertEquals(
