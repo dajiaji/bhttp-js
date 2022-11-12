@@ -6,13 +6,14 @@
 ![Browser CI](https://github.com/dajiaji/bhttp-js/actions/workflows/ci_browser.yml/badge.svg)
 ![Node.js CI](https://github.com/dajiaji/bhttp-js/actions/workflows/ci_node.yml/badge.svg)
 ![Deno CI](https://github.com/dajiaji/bhttp-js/actions/workflows/ci.yml/badge.svg)
+![Cloudflare Workers CI](https://github.com/dajiaji/bhttp-js/actions/workflows/ci_cfw.yml/badge.svg)
 [![codecov](https://codecov.io/gh/dajiaji/bhttp-js/branch/main/graph/badge.svg?token=7I7JGKDDJ2)](https://codecov.io/gh/dajiaji/bhttp-js)
 
 </div>
 
 <div align="center">
 A <a href="https://datatracker.ietf.org/doc/html/rfc9292">BHTTP (RFC9292: Binary Representation of HTTP Messages)</a> Encoder and Decoder written in TypeScript for <a href="https://developer.mozilla.org/en-US/docs/Web/API/Request">Request</a>/<a href="https://developer.mozilla.org/en-US/docs/Web/API/Response">Response</a> interface of the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">Fetch API</a>.
-This module works on web browsers, Node.js and Deno.
+This module works on web browsers, Node.js, Deno and Cloudflare Workers.
 </div>
 
 <p></p>
@@ -30,8 +31,9 @@ This module works on web browsers, Node.js and Deno.
   - [Web Browser](#web-browser)
   - [Node.js](#nodejs)
   - [Deno](#deno)
+  - [Cloudflare Workers](#cloudflare-workers)
 - [Usage](#usage)
-  - [Web Browser](#web-browser-1)
+  - [Web Browser / Cloudflare Workers](#web-browser-cloudflare-workers)
   - [Node.js](#nodejs-1)
   - [Deno](#deno-1)
 - [Contributing](#contributing)
@@ -39,7 +41,10 @@ This module works on web browsers, Node.js and Deno.
 
 ## Supported Environments
 
-- **Web browsers**
+- **Web browsers** which support
+  [Request](https://developer.mozilla.org/en-US/docs/Web/API/Request)/[Response](https://developer.mozilla.org/en-US/docs/Web/API/Response)
+  interface of
+  [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
 - **Node.js**: 18.x, 19.x
 - **Deno**: 1.x
 
@@ -101,11 +106,29 @@ import * as bhttp from "https://deno.land/x/bhttp@v0.1.1/mod.ts";
 import * as bhttp from "https://deno.land/x/bhttp/mod.ts";
 ```
 
+### Cloudflare Workers
+
+Downloads a single js file from esm.sh:
+
+```sh
+curl -sS -o $YOUR_SRC_PATH/bhttp.js https://esm.sh/v86/bhttp-js@0.1.1/es2022/bhttp-js.js
+# if you want to use a minified version:
+curl -sS -o $YOUR_SRC_PATH/bhttp.min.js https://esm.sh/v86/bhttp-js@0.1.1/es2022/bhttp.min.js
+```
+
+Emits a single js file by using `deno bundle`:
+
+```sh
+deno bundle https://deno.land/x/bhttp@0.1.1/mod.ts > $YOUR_SRC_PATH/bhttp.js
+```
+
 ## Usage
 
 This section shows some typical usage examples.
 
-### Web Browser
+### Web Browser / Cloudflare Workers
+
+BHTTP client on Web Browser:
 
 ```js
 <html>
@@ -117,20 +140,22 @@ This section shows some typical usage examples.
       globalThis.doBHttp = async () => {
 
         try {
-          const req = new Request("https://www.example.com/hello.txt", {
-            method: "GET",
+          const encoder = new BHttpEncoder();
+          const req = new Request("https://target.example/query?foo=bar");
+          const bReq = await encoder.encodeRequest(req);
+          const res = await fetch("https://bin.example/to_target", {
+            method: "POST",
             headers: {
-              "Accept-Language": "en, mi",
+              "Content-Type": "message/bhttp",
             },
+            body: bReq,
           });
 
-          // Decode a Request object to a BHTTP binary string.
-          const encoder = new BHttpEncoder();
-          const binReq = await encoder.encodeRequest(req);
-
-          // Decode the BHTTP binary string to a Request object.
           const decoder = new BHttpDecoder();
-          const decodedReq = decoder.decodeRequest(binReq);
+          const decodedRes = decoder.decodeResponse(await res.arrayBuffer());
+          // decodedRes.status === 200;
+          const body = await decodedRes.text();
+          // body === "baz"
 
         } catch (err) {
           alert(err.message);
@@ -141,6 +166,48 @@ This section shows some typical usage examples.
     <button type="button" onclick="doBHttp()">do BHTTP</button>
   </body>
 </html>
+```
+
+BHTTP server on Cloutflare Workers:
+
+```js
+import { BHttpDecoder, BHttpEncoder } from "./bhttp.js";
+
+export default {
+  async fetch(request) {
+    const decoder = new BHttpDecoder();
+    const encoder = new BHttpEncoder();
+    const url = new URL(request.url);
+
+    if (url.pathname === "/to_target") {
+      try {
+        if (request.headers.get("content-type") !== "message/bhttp") {
+          throw new Error("Invalid content-type.");
+        }
+        const reqBody = await request.arrayBuffer();
+        const decodedReq = decoder.decodeRequest(reqBody);
+        const res = new Response("baz", {
+          headers: { "Content-Type": "text/plain" },
+        });
+        const bRes = await encoder.encodeResponse(res);
+        return new Response(bRes, {
+          headers: { "Content-Type": "message/bhttp" },
+        });
+      } catch (err) {
+        return new Response(
+          await encoder.encodeResponse(
+            new Response(err.message, { status: 400 }),
+          ),
+          { status: 400, headers: { "Content-Type": "message/bhttp" } },
+        );
+      }
+    }
+    return new Response(
+      await encoder.encodeResponse(new Response("", { status: 404 })),
+      { status: 404, headers: { "Content-Type": "message/bhttp" } },
+    );
+  },
+};
 ```
 
 ### Node.js
