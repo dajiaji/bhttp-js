@@ -1,0 +1,284 @@
+<html>
+  <head><title>bhttp-js test</title></head>
+  <body>
+    <script type="module">
+      import { BHttpEncoder, BHttpDecoder } from './src/mod.js';
+
+      globalThis.run = async () => {
+        let pass = 0;
+        let fail = 0;
+
+        // (1) GET
+        try {
+          const req = new Request("https://www.example.com/hello.txt", {
+            method: "GET",
+            headers: {
+              "User-Agent": "curl/7.16.3 libcurl/7.16.3",
+              "Accept-Language": "en, mi",
+            },
+          });
+
+          // Decode a Request object to a BHTTP binary string.
+          const encoder = new BHttpEncoder();
+          const binReq = await encoder.encodeRequest(req);
+
+          // Decode the BHTTP binary string to a Request object.
+          const decoder = new BHttpDecoder();
+          const decodedReq = decoder.decodeRequest(binReq);
+
+          // assert
+          if (decodedReq.method !== "GET") {
+            throw new Error("method mismatch.");
+          }
+          if (decodedReq.headers.get("user-agent") !== "curl/7.16.3 libcurl/7.16.3") {
+            throw new Error("user-agent mismatch.");
+          }
+          if (decodedReq.headers.get("accept-language") !== "en, mi") {
+            throw new Error("user-agent mismatch.");
+          }
+          pass++;
+
+        } catch (e) {
+          console.log(e.message);
+          fail++;
+        }
+
+        // (2) POST
+        try {
+          const req = new Request("https://www.example.com/hello.txt", {
+            method: "POST",
+            headers: { "Content-Type": "text/plain" },
+            body: "Hello world!",
+          });
+          const encoder = new BHttpEncoder();
+          const binReq = await encoder.encodeRequest(req);
+
+          const decoder = new BHttpDecoder();
+          const decodedReq = decoder.decodeRequest(binReq);
+
+          // assert
+          if (decodedReq.method !== "POST") {
+            throw new Error("method mismatch.");
+          }
+          if (decodedReq.headers.get("content-type") !== "text/plain") {
+            throw new Error("content-type mismatch.");
+          }
+          if (decodedReq.url !== "https://www.example.com/hello.txt") {
+            throw new Error("url mismatch.");
+          }
+          const body = await decodedReq.text();
+          if (body === "Hello world!") {
+            throw new Error("body mismatch.");
+          }
+          pass++;
+
+        } catch (e) {
+          fail++;
+        }
+
+        // (3) RFC9292 Example - 1
+        try {
+          const exampleData = hexStringToBytes(
+            "0003474554056874747073000a2f6865" +
+              "6c6c6f2e747874406c0a757365722d61" +
+              "67656e74346375726c2f372e31362e33" +
+              "206c69626375726c2f372e31362e3320" +
+              "4f70656e53534c2f302e392e376c207a" +
+              "6c69622f312e322e3304686f73740f77" +
+              "77772e6578616d706c652e636f6d0f61" +
+              "63636570742d6c616e67756167650665" +
+              "6e2c206d690000",
+          );
+          const decoder = new BHttpDecoder();
+          let req = decoder.decodeRequest(exampleData);
+
+          // assert
+          if (decodedReq.method !== "GET") {
+            throw new Error("method mismatch.");
+          }
+          if (decodedReq.headers.get("user-agent") !== "curl/7.16.3 libcurl/7.16.3 OpenSSL/0.9.7l zlib/1.2.3") {
+            throw new Error("user-agent mismatch.");
+          }
+          if (decodedReq.url !== "https://www.example.com/hello.txt") {
+            throw new Error("url mismatch.");
+          }
+          if (decodedReq.headers.get("accept-language") !== "en, mi") {
+            throw new Error("user-agent mismatch.");
+          }
+          pass++;
+
+        } catch (e) {
+          fail++;
+        }
+
+        // (4) RFC9292 Example - 2
+        try {
+          const exampleData = hexStringToBytes(
+            "0203474554056874747073000a2f6865" +
+              "6c6c6f2e7478740a757365722d616765" +
+              "6e74346375726c2f372e31362e33206c" +
+              "69626375726c2f372e31362e33204f70" +
+              "656e53534c2f302e392e376c207a6c69" +
+              "622f312e322e3304686f73740f777777" +
+              "2e6578616d706c652e636f6d0f616363" +
+              "6570742d6c616e677561676506656e2c" +
+              "206d6900000000000000000000000000",
+          );
+          const decoder = new BHttpDecoder();
+          let req = decoder.decodeRequest(exampleData);
+
+          // assert
+          if (decodedReq.method !== "GET") {
+            throw new Error("method mismatch.");
+          }
+          if (decodedReq.headers.get("user-agent") !== "curl/7.16.3 libcurl/7.16.3 OpenSSL/0.9.7l zlib/1.2.3") {
+            throw new Error("user-agent mismatch.");
+          }
+          if (decodedReq.url !== "https://www.example.com/hello.txt") {
+            throw new Error("url mismatch.");
+          }
+          if (decodedReq.headers.get("accept-language") !== "en, mi") {
+            throw new Error("user-agent mismatch.");
+          }
+          pass++;
+
+        } catch (e) {
+          fail++;
+        }
+
+        // (5) RFC9292 Example - 3
+        try {
+          const exampleData = hexStringToBytes(
+            "0340660772756e6e696e670a22736c65" +
+              "657020313522004067046c696e6b233c" +
+              "2f7374796c652e6373733e3b2072656c" +
+              "3d7072656c6f61643b2061733d737479" +
+              "6c65046c696e6b243c2f736372697074" +
+              "2e6a733e3b2072656c3d7072656c6f61" +
+              "643b2061733d7363726970740040c804" +
+              "646174651d4d6f6e2c203237204a756c" +
+              "20323030392031323a32383a35332047" +
+              "4d540673657276657206417061636865" +
+              "0d6c6173742d6d6f6469666965641d57" +
+              "65642c203232204a756c203230303920" +
+              "31393a31353a353620474d5404657461" +
+              "671422333461613338372d642d313536" +
+              "3865623030220d6163636570742d7261" +
+              "6e6765730562797465730e636f6e7465" +
+              "6e742d6c656e67746802353104766172" +
+              "790f4163636570742d456e636f64696e" +
+              "670c636f6e74656e742d747970650a74" +
+              "6578742f706c61696e003348656c6c6f" +
+              "20576f726c6421204d7920636f6e7465" +
+              "6e7420696e636c756465732061207472" +
+              "61696c696e672043524c462e0d0a0000",
+          );
+          const decoder = new BHttpDecoder();
+          let res = decoder.decodeResponse(exampleData);
+
+          // assert
+          if (res.status !== 200) {
+            throw new Error("status mismatch.");
+          }
+          if (res.headers.get("date") !== "Mon, 27 Jul 2009 12:28:53 GMT") {
+            throw new Error("date mismatch.");
+          }
+          if (res.headers.get("server") !== "Apache") {
+            throw new Error("server mismatch.");
+          }
+          if (res.headers.get("last-modified") != "Wed, 22 Jul 2009 19:15:56 GMT") {
+            throw new Error("last-modified mismatch.");
+          }
+          if (res.headers.get("etag") !== '"34aa387-d-1568eb00"') {
+            throw new Error("etag mismatch.");
+          }
+          if (res.headers.get("accept-ranges") !== "bytes") {
+            throw new Error("accept-ranges mismatch.");
+          }
+          if (res.headers.get("content-length") !== "51") {
+            throw new Error("content-length mismatch.");
+          }
+          if (res.headers.get("vary") !== "Accept-Encoding") {
+            throw new Error("vary mismatch.");
+          }
+          if (res.headers.get("content-type") !== "text/plain") {
+            throw new Error("content-type mismatch.");
+          }
+
+          const encoder = new BHttpEncoder();
+          const encodedRes = await encoder.encodeResponse(res);
+
+          res = decoder.decodeResponse(encodedRes);
+
+          // assert
+          if (res.status !== 200) {
+            throw new Error("status mismatch.");
+          }
+          if (res.headers.get("date") !== "Mon, 27 Jul 2009 12:28:53 GMT") {
+            throw new Error("date mismatch.");
+          }
+          if (res.headers.get("server") !== "Apache") {
+            throw new Error("server mismatch.");
+          }
+          if (res.headers.get("last-modified") != "Wed, 22 Jul 2009 19:15:56 GMT") {
+            throw new Error("last-modified mismatch.");
+          }
+          if (res.headers.get("etag") !== '"34aa387-d-1568eb00"') {
+            throw new Error("etag mismatch.");
+          }
+          if (res.headers.get("accept-ranges") !== "bytes") {
+            throw new Error("accept-ranges mismatch.");
+          }
+          if (res.headers.get("content-length") !== "51") {
+            throw new Error("content-length mismatch.");
+          }
+          if (res.headers.get("vary") !== "Accept-Encoding") {
+            throw new Error("vary mismatch.");
+          }
+          if (res.headers.get("content-type") !== "text/plain") {
+            throw new Error("content-type mismatch.");
+          }
+          const td = new TextDecoder();
+          const body = await res.arrayBuffer();
+          if (td.decode(new Uint8Array(body)) !== "Hello World! My content includes a trailing CRLF.\r\n") {
+            throw new Error("payload mismatch.");
+          }
+          pass++;
+
+        } catch (e) {
+          fail++;
+        }
+        document.getElementById("pass").innerHTML = pass;
+        document.getElementById("fail").innerHTML = fail;
+      }
+
+      globalThis.reset = () => {
+        document.getElementById("pass").innerHTML = "-";
+        document.getElementById("fail").innerHTML = "-";
+      }
+      
+    </script>
+
+    <h1><a href="https://github.com/dajiaji/bhttp-js">bhttp-js</a> test</h1>
+
+    <div id="operation">
+      <button type="button" onclick="run()">run</button>
+      <button type="button" onclick="reset()">reset</button>
+    </div>
+
+    <br>
+
+    <div id="test">  
+      <table>
+        <tr>
+          <th><font color="green">pass: </font></th>
+          <td id="pass">-</td>
+        </tr>
+        <tr>
+          <th><font color="red">fail: </font></th>
+          <td id="fail">-</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
