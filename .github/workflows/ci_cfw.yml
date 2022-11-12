@@ -1,0 +1,30 @@
+name: Cloudflare Workers CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+      - uses: actions/setup-node@v3
+        with:
+          node-version: v18.x
+      - run: deno bundle mod.ts test/wrangler/src/bhttp.js
+      - name: Run test
+        working-directory: ./test/wrangler
+        run: |
+          npm install
+          nohup npm start &
+          sleep 3
+          deno test bhttp.spec.ts --allow-net
