@@ -99,19 +99,16 @@
               "6e2c206d690000",
           );
           const decoder = new BHttpDecoder();
-          let req = decoder.decodeRequest(exampleData);
+          const req = decoder.decodeRequest(exampleData);
 
           // assert
-          if (decodedReq.method !== "GET") {
+          if (req.method !== "GET") {
             throw new Error("method mismatch.");
           }
-          // if (decodedReq.headers.get("user-agent") !== "curl/7.16.3 libcurl/7.16.3 OpenSSL/0.9.7l zlib/1.2.3") {
-          //   throw new Error("user-agent mismatch.");
-          // }
-          if (decodedReq.url !== "https://www.example.com/hello.txt") {
+          if (req.url !== "https://www.example.com/hello.txt") {
             throw new Error("url mismatch.");
           }
-          if (decodedReq.headers.get("accept-language") !== "en, mi") {
+          if (req.headers.get("accept-language") !== "en, mi") {
             throw new Error("accept-language mismatch.");
           }
           pass++;
@@ -135,19 +132,16 @@
               "206d6900000000000000000000000000",
           );
           const decoder = new BHttpDecoder();
-          let req = decoder.decodeRequest(exampleData);
+          const req = decoder.decodeRequest(exampleData);
 
           // assert
-          if (decodedReq.method !== "GET") {
+          if (req.method !== "GET") {
             throw new Error("method mismatch.");
           }
-          // if (decodedReq.headers.get("user-agent") !== "curl/7.16.3 libcurl/7.16.3 OpenSSL/0.9.7l zlib/1.2.3") {
-          //   throw new Error("user-agent mismatch.");
-          // }
-          if (decodedReq.url !== "https://www.example.com/hello.txt") {
+          if (req.url !== "https://www.example.com/hello.txt") {
             throw new Error("url mismatch.");
           }
-          if (decodedReq.headers.get("accept-language") !== "en, mi") {
+          if (req.headers.get("accept-language") !== "en, mi") {
             throw new Error("accept-language mismatch.");
           }
           pass++;
