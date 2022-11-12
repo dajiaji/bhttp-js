@@ -20,9 +20,7 @@ describe("Cloudflare Workers", () => {
       assertEquals(res.status, 200);
       assertEquals(res.headers.get("content-type"), "message/bhttp");
       const decoder = new BHttpDecoder();
-      const decodedRes = decoder.decodeResponse(
-        new Uint8Array(await res.arrayBuffer()),
-      );
+      const decodedRes = decoder.decodeResponse(await res.arrayBuffer());
       assertEquals(200, decodedRes.status);
       assertEquals("baz", await decodedRes.text());
     });
@@ -42,9 +40,7 @@ describe("Cloudflare Workers", () => {
       assertEquals(res.status, 404);
       assertEquals(res.headers.get("content-type"), "message/bhttp");
       const decoder = new BHttpDecoder();
-      const decodedRes = decoder.decodeResponse(
-        new Uint8Array(await res.arrayBuffer()),
-      );
+      const decodedRes = decoder.decodeResponse(await res.arrayBuffer());
       assertEquals(404, decodedRes.status);
     });
   });
@@ -69,9 +65,7 @@ describe("Cloudflare Workers", () => {
       assertEquals(res.status, 201);
       assertEquals(res.headers.get("content-type"), "message/bhttp");
       const decoder = new BHttpDecoder();
-      const decodedRes = decoder.decodeResponse(
-        new Uint8Array(await res.arrayBuffer()),
-      );
+      const decodedRes = decoder.decodeResponse(await res.arrayBuffer());
       assertEquals(201, decodedRes.status);
     });
 
@@ -94,9 +88,7 @@ describe("Cloudflare Workers", () => {
       assertEquals(res.status, 404);
       assertEquals(res.headers.get("content-type"), "message/bhttp");
       const decoder = new BHttpDecoder();
-      const decodedRes = decoder.decodeResponse(
-        new Uint8Array(await res.arrayBuffer()),
-      );
+      const decodedRes = decoder.decodeResponse(await res.arrayBuffer());
       assertEquals(404, decodedRes.status);
     });
   });

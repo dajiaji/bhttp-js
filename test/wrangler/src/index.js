@@ -12,7 +12,7 @@ export default {
           throw new Error("Invalid content-type.");
         }
         const reqBody = await request.arrayBuffer();
-        const decodedReq = decoder.decodeRequest(new Uint8Array(reqBody));
+        const decodedReq = decoder.decodeRequest(reqBody);
         if (decodedReq.url !== "https://ogr.example/query") {
           throw new Error("Invalid destination.");
         }
@@ -38,7 +38,7 @@ export default {
           throw new Error("Invalid content-type.");
         }
         const reqBody = await request.arrayBuffer();
-        const decodedReq = decoder.decodeRequest(new Uint8Array(reqBody));
+        const decodedReq = decoder.decodeRequest(reqBody);
         if (decodedReq.url !== "https://ogr.example/register") {
           throw new Error("Invalid destination.");
         }

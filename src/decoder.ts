@@ -82,8 +82,11 @@ export class BHttpDecoder {
     this._td = new TextDecoder();
   }
 
-  public decodeRequest(src: Uint8Array): Request {
-    const ctx = new RequestDecoderContext(src);
+  public decodeRequest(src: ArrayBuffer | Uint8Array): Request {
+    if (src instanceof ArrayBuffer) {
+      src = new Uint8Array(src);
+    }
+    const ctx = new RequestDecoderContext(src as Uint8Array);
     ctx.framingIndicator = this.decodeVli(ctx);
 
     switch (ctx.framingIndicator) {
@@ -96,8 +99,11 @@ export class BHttpDecoder {
     }
   }
 
-  public decodeResponse(src: Uint8Array): Response {
-    const ctx = new ResponseDecoderContext(src);
+  public decodeResponse(src: ArrayBuffer | Uint8Array): Response {
+    if (src instanceof ArrayBuffer) {
+      src = new Uint8Array(src);
+    }
+    const ctx = new ResponseDecoderContext(src as Uint8Array);
     ctx.framingIndicator = this.decodeVli(ctx);
 
     switch (ctx.framingIndicator) {
