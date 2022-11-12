@@ -13,7 +13,6 @@
           const req = new Request("https://www.example.com/hello.txt", {
             method: "GET",
             headers: {
-              "User-Agent": "curl/7.16.3 libcurl/7.16.3",
               "Accept-Language": "en, mi",
             },
           });
@@ -30,9 +29,6 @@
           if (decodedReq.method !== "GET") {
             throw new Error("method mismatch.");
           }
-          // if (decodedReq.headers.get("user-agent") !== "curl/7.16.3 libcurl/7.16.3") {
-          //   throw new Error("user-agent mismatch:", decodedReq.headers.get("user-agent"));
-          // }
           if (decodedReq.headers.get("accept-language") !== "en, mi") {
             throw new Error("accept-language mismatch.");
           }
