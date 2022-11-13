@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+## Version 0.2.1
+
+Released 2022-11-13
+
+- [(#16) Fix bug on VLI value processing.](https://github.com/dajiaji/bhttp-js/pull/16)
+- [(#15) Add test for sample data including trailer.](https://github.com/dajiaji/bhttp-js/pull/15)
+
 ## Version 0.2.0
 
 Released 2022-11-13
