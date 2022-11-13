@@ -407,13 +407,25 @@ export class BHttpDecoder {
                 return res;
             case consts.VLI_LEN_4:
                 res = (ctx.buf[ctx.p++] & consts.VLI_MASK_HEADER) << 24;
-                res += (ctx.buf[ctx.p++] & consts.VLI_MASK_HEADER) << 16;
-                res += (ctx.buf[ctx.p++] & consts.VLI_MASK_HEADER) << 8;
+                res += ctx.buf[ctx.p++] << 16;
+                res += ctx.buf[ctx.p++] << 8;
                 res += ctx.buf[ctx.p++];
                 return res;
             default:
                 // consts.VLI_LEN_8
-                throw new errors.NotSupportedError("8-byte length value is not supported.");
+                // res = (ctx.buf[ctx.p++] & consts.VLI_MASK_HEADER) << 56;
+                res = 0;
+                if (ctx.buf[++ctx.p] > 15) {
+                    throw new errors.NotSupportedError("Over MAX_SAFE_INTEGER-length value is not supported.");
+                }
+                res += ctx.buf[ctx.p++] << 48;
+                res += ctx.buf[ctx.p++] << 40;
+                res += ctx.buf[ctx.p++] << 32;
+                res += ctx.buf[ctx.p++] << 24;
+                res += ctx.buf[ctx.p++] << 16;
+                res += ctx.buf[ctx.p++] << 8;
+                res += ctx.buf[ctx.p++];
+                return res;
         }
     }
 }

@@ -46,10 +46,10 @@ class EncoderContext {
         if (v < 1073741824) {
             return 4;
         }
-        if (v < Number.MAX_SAFE_INTEGER) {
+        if (v <= Number.MAX_SAFE_INTEGER) {
             return 8;
         }
-        throw new errors.NotSupportedError("over MAX_SAFE_INTEGER value is not supported.");
+        throw new errors.NotSupportedError("Over MAX_SAFE_INTEGER length value is not supported.");
     }
 }
 class RequestEncoderContext extends EncoderContext {
@@ -234,6 +234,18 @@ export class BHttpEncoder {
             ctx.buf[ctx.p++] = consts.VLI_MASK_LSB & v;
             return;
         }
-        throw new errors.NotSupportedError("8-byte length value is not supported.");
+        if (v <= Number.MAX_SAFE_INTEGER) {
+            // ctx.buf[ctx.p++] = consts.VLI_LEN_8 + (v >> 56);
+            ctx.buf[ctx.p++] = consts.VLI_LEN_8;
+            ctx.buf[ctx.p++] = consts.VLI_MASK_LSB & (v >> 48);
+            ctx.buf[ctx.p++] = consts.VLI_MASK_LSB & (v >> 40);
+            ctx.buf[ctx.p++] = consts.VLI_MASK_LSB & (v >> 32);
+            ctx.buf[ctx.p++] = consts.VLI_MASK_LSB & (v >> 24);
+            ctx.buf[ctx.p++] = consts.VLI_MASK_LSB & (v >> 16);
+            ctx.buf[ctx.p++] = consts.VLI_MASK_LSB & (v >> 8);
+            ctx.buf[ctx.p++] = consts.VLI_MASK_LSB & v;
+            return;
+        }
+        throw new errors.NotSupportedError("Over MAX_SAFE_INTEGER-length value is not supported.");
     }
 }
