@@ -1,0 +1,14 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/node/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/test/wrangler/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/test/playwright/"
+    schedule:
+      interval: "daily"
