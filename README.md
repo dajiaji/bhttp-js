@@ -7,6 +7,7 @@
 ![Node.js CI](https://github.com/dajiaji/bhttp-js/actions/workflows/ci_node.yml/badge.svg)
 ![Deno CI](https://github.com/dajiaji/bhttp-js/actions/workflows/ci.yml/badge.svg)
 ![Cloudflare Workers CI](https://github.com/dajiaji/bhttp-js/actions/workflows/ci_cfw.yml/badge.svg)
+![@fastly/js-compute CI](https://github.com/dajiaji/bhttp-js/actions/workflows/ci_fastly.yml/badge.svg)
 ![bun CI](https://github.com/dajiaji/bhttp-js/actions/workflows/ci_bun.yml/badge.svg)
 [![codecov](https://codecov.io/gh/dajiaji/bhttp-js/branch/main/graph/badge.svg?token=7I7JGKDDJ2)](https://codecov.io/gh/dajiaji/bhttp-js)
 

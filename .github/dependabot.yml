@@ -1,7 +1,7 @@
 version: 2
 updates:
   - package-ecosystem: "npm"
-    directory: "/node/"
+    directory: "/samples/node/"
     schedule:
       interval: "daily"
   - package-ecosystem: "npm"
@@ -10,5 +10,9 @@ updates:
       interval: "daily"
   - package-ecosystem: "npm"
     directory: "/test/playwright/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/test/fastly/"
     schedule:
       interval: "daily"
