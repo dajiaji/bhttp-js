@@ -1,17 +1,15 @@
 import { assertEquals } from "testing/asserts.ts";
 import { describe, it } from "testing/bdd.ts";
 
-import { BHttpDecoder, BHttpEncoder } from "../../mod.ts";
+import { BHttpDecoder, BHttpEncoder } from "../../../mod.ts";
 
-const TEST_BASE_URL = "http://localhost:3000";
-
-describe("bun", () => {
+describe("Cloudflare Workers", () => {
   describe("GET", () => {
     it("200 OK", async () => {
       const encoder = new BHttpEncoder();
       const req = new Request("https://ogr.example/query?foo=bar");
       const bReq = await encoder.encodeRequest(req);
-      const res = await fetch(TEST_BASE_URL + "/test1", {
+      const res = await fetch("http://localhost:8787/test1", {
         method: "POST",
         headers: {
           "Content-Type": "message/bhttp",
@@ -31,7 +29,7 @@ describe("bun", () => {
       const encoder = new BHttpEncoder();
       const req = new Request("https://ogr.example/query?foo=bar");
       const bReq = await encoder.encodeRequest(req);
-      const res = await fetch(TEST_BASE_URL + "/testx", {
+      const res = await fetch("http://localhost:8787/testx", {
         method: "POST",
         headers: {
           "Content-Type": "message/bhttp",
@@ -56,7 +54,7 @@ describe("bun", () => {
         body: '{"user": "me"}',
       });
       const bReq = await encoder.encodeRequest(req);
-      const res = await fetch(TEST_BASE_URL + "/test2", {
+      const res = await fetch("http://localhost:8787/test2", {
         method: "POST",
         headers: {
           "Content-Type": "message/bhttp",
@@ -79,7 +77,7 @@ describe("bun", () => {
         body: '{"user": "me"}',
       });
       const bReq = await encoder.encodeRequest(req);
-      const res = await fetch(TEST_BASE_URL + "/testx", {
+      const res = await fetch("http://localhost:8787/testx", {
         method: "POST",
         headers: {
           "Content-Type": "message/bhttp",

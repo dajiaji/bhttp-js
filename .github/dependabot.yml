@@ -5,14 +5,14 @@ updates:
     schedule:
       interval: "daily"
   - package-ecosystem: "npm"
-    directory: "/test/wrangler/"
+    directory: "/test/runtimes/browsers/"
     schedule:
       interval: "daily"
   - package-ecosystem: "npm"
-    directory: "/test/playwright/"
+    directory: "/test/runtimes/cloudflare/"
     schedule:
       interval: "daily"
   - package-ecosystem: "npm"
-    directory: "/test/fastly/"
+    directory: "/test/runtimes/fastly/"
     schedule:
       interval: "daily"

@@ -3,10 +3,10 @@
 <div align="center">
 
 [![deno doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/x/bhttp/mod.ts)
-![Browser CI](https://github.com/dajiaji/bhttp-js/actions/workflows/ci_browser.yml/badge.svg)
+![Browsers CI](https://github.com/dajiaji/bhttp-js/actions/workflows/ci_browsers.yml/badge.svg)
 ![Node.js CI](https://github.com/dajiaji/bhttp-js/actions/workflows/ci_node.yml/badge.svg)
 ![Deno CI](https://github.com/dajiaji/bhttp-js/actions/workflows/ci.yml/badge.svg)
-![Cloudflare Workers CI](https://github.com/dajiaji/bhttp-js/actions/workflows/ci_cfw.yml/badge.svg)
+![Cloudflare Workers CI](https://github.com/dajiaji/bhttp-js/actions/workflows/ci_cloudflare.yml/badge.svg)
 ![@fastly/js-compute CI](https://github.com/dajiaji/bhttp-js/actions/workflows/ci_fastly.yml/badge.svg)
 ![bun CI](https://github.com/dajiaji/bhttp-js/actions/workflows/ci_bun.yml/badge.svg)
 [![codecov](https://codecov.io/gh/dajiaji/bhttp-js/branch/main/graph/badge.svg?token=7I7JGKDDJ2)](https://codecov.io/gh/dajiaji/bhttp-js)

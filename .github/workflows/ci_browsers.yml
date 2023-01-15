@@ -1,4 +1,4 @@
-name: Browser CI
+name: Browsers CI
 
 on:
   push:
@@ -38,5 +38,5 @@ jobs:
         with:
           node-version: 18.x
       - uses: microsoft/playwright-github-action@v1
-      - working-directory: ./test/playwright
+      - working-directory: ./test/runtimes/browsers
         run: npm install && npx playwright install && npx playwright test
