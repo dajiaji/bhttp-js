@@ -105,7 +105,7 @@ Using deno.land:
 
 ```js
 // use a specific version
-import * as bhttp from "https://deno.land/x/bhttp@v0.2.2/mod.ts";
+import * as bhttp from "https://deno.land/x/bhttp@0.2.2/mod.ts";
 
 // use the latest stable version
 import * as bhttp from "https://deno.land/x/bhttp/mod.ts";
@@ -247,7 +247,7 @@ doBHttp();
 import {
   BHttpDecoder,
   BHttpEncoder,
-} from "https://deno.land/x/bhttp@v0.2.2/mod.ts";
+} from "https://deno.land/x/bhttp@0.2.2/mod.ts";
 
 const req = new Request("https://www.example.com/hello.txt", {
   method: "GET",
