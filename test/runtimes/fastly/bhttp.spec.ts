@@ -1,7 +1,7 @@
 import { assertEquals } from "testing/asserts.ts";
 import { describe, it } from "testing/bdd.ts";
 
-import { BHttpDecoder, BHttpEncoder } from "../../mod.ts";
+import { BHttpDecoder, BHttpEncoder } from "../../../mod.ts";
 
 const TEST_BASE_URL = "http://localhost:7676";
 

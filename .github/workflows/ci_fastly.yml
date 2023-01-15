@@ -11,7 +11,7 @@ permissions:
 
 defaults:
   run:
-    working-directory: ./test/fastly
+    working-directory: ./test/runtimes/fastly
 
 jobs:
   test:
@@ -21,7 +21,7 @@ jobs:
       - uses: denoland/setup-deno@v1
         with:
           deno-version: v1.x
-      - run: deno bundle ../../mod.ts src/bhttp.js
+      - run: deno bundle ../../../mod.ts src/bhttp.js
       - uses: fastly/compute-actions/setup@v2
         env:
           FASTLY_API_TOKEN: ${{ secrets.FASTLY_API_TOKEN }}
