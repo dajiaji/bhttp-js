@@ -2,6 +2,19 @@
 
 ## Unreleased
 
+## Version 0.2.2
+
+Released 2023-01-15
+
+- [(#25) Add support for @fastry/js-compute.](https://github.com/dajiaji/bhttp-js/pull/25)
+- [(#24) Add support for bun.](https://github.com/dajiaji/bhttp-js/pull/24)
+- [(#18) Add dependabot.yml.](https://github.com/dajiaji/bhttp-js/pull/18)
+- Update dev dependencies.
+  - [(#27) Bump std to 0.172.0.](https://github.com/dajiaji/bhttp-js/pull/27)
+  - [(#27) Bump dnt to 0.33.0.](https://github.com/dajiaji/bhttp-js/pull/27)
+  - [(#23) Bump wrangler to 2.7.1.](https://github.com/dajiaji/bhttp-js/pull/23)
+  - [(#19) Bump playwright/test to 1.29.2.](https://github.com/dajiaji/bhttp-js/pull/19)
+
 ## Version 0.2.1
 
 Released 2022-11-13
