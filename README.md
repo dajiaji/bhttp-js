@@ -15,7 +15,7 @@
 
 <div align="center">
 A <a href="https://datatracker.ietf.org/doc/html/rfc9292">BHTTP (RFC9292: Binary Representation of HTTP Messages)</a> encoder and decoder written in TypeScript<br>for the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Request">Request</a>/<a href="https://developer.mozilla.org/en-US/docs/Web/API/Response">Response</a> interface of <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">Fetch API</a>.<br>
-This module works on web browsers, Node.js, Deno and various JavaScript runtimes.
+This module works on web browsers, Node.js, Deno and various other JavaScript runtimes.
 </div>
 
 <p></p>
@@ -49,7 +49,9 @@ This module works on web browsers, Node.js, Deno and various JavaScript runtimes
   [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
 - **Node.js**: 18.x, 19.x
 - **Deno**: 1.x
+- **bun**: 0.3-
 - **Cloudflare Workers**
+- **@fastly/js-compute**
 
 ## Installation
 
@@ -62,7 +64,7 @@ Using esm.sh:
 ```html
 <!-- use a specific version -->
 <script type="module">
-  import * as bhttp from "https://esm.sh/bhttp-js@0.2.1";
+  import * as bhttp from "https://esm.sh/bhttp-js@0.2.2";
   // ...
 </script>
 
@@ -78,7 +80,7 @@ Using unpkg:
 ```html
 <!-- use a specific version -->
 <script type="module">
-  import * as bhttp from "https://unpkg.com/bhttp-js@0.2.1/esm/mod.js";
+  import * as bhttp from "https://unpkg.com/bhttp-js@0.2.2/esm/mod.js";
   // ...
 </script>
 ```
@@ -103,7 +105,7 @@ Using deno.land:
 
 ```js
 // use a specific version
-import * as bhttp from "https://deno.land/x/bhttp@v0.2.1/mod.ts";
+import * as bhttp from "https://deno.land/x/bhttp@v0.2.2/mod.ts";
 
 // use the latest stable version
 import * as bhttp from "https://deno.land/x/bhttp/mod.ts";
@@ -114,15 +116,15 @@ import * as bhttp from "https://deno.land/x/bhttp/mod.ts";
 Downloads a single js file from esm.sh:
 
 ```sh
-curl -sS -o $YOUR_SRC_PATH/bhttp.js https://esm.sh/v86/bhttp-js@0.2.1/es2022/bhttp-js.js
+curl -sS -o $YOUR_SRC_PATH/bhttp.js https://esm.sh/v86/bhttp-js@0.2.2/es2022/bhttp-js.js
 # if you want to use a minified version:
-curl -sS -o $YOUR_SRC_PATH/bhttp.min.js https://esm.sh/v86/bhttp-js@0.2.1/es2022/bhttp.min.js
+curl -sS -o $YOUR_SRC_PATH/bhttp.min.js https://esm.sh/v86/bhttp-js@0.2.2/es2022/bhttp.min.js
 ```
 
 Emits a single js file by using `deno bundle`:
 
 ```sh
-deno bundle https://deno.land/x/bhttp@0.2.1/mod.ts > $YOUR_SRC_PATH/bhttp.js
+deno bundle https://deno.land/x/bhttp@0.2.2/mod.ts > $YOUR_SRC_PATH/bhttp.js
 ```
 
 ## Usage
@@ -138,7 +140,7 @@ BHTTP client on Web Browser:
   <head></head>
   <body>
     <script type="module">
-      import { BHttpEncoder, BHttpDecoder } from 'https://esm.sh/bhttp-js@0.2.1';
+      import { BHttpEncoder, BHttpDecoder } from 'https://esm.sh/bhttp-js@0.2.2';
 
       globalThis.doBHttp = async () => {
 
@@ -245,7 +247,7 @@ doBHttp();
 import {
   BHttpDecoder,
   BHttpEncoder,
-} from "https://deno.land/x/bhttp@v0.2.1/mod.ts";
+} from "https://deno.land/x/bhttp@v0.2.2/mod.ts";
 
 const req = new Request("https://www.example.com/hello.txt", {
   method: "GET",
