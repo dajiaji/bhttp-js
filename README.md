@@ -7,13 +7,14 @@
 ![Node.js CI](https://github.com/dajiaji/bhttp-js/actions/workflows/ci_node.yml/badge.svg)
 ![Deno CI](https://github.com/dajiaji/bhttp-js/actions/workflows/ci.yml/badge.svg)
 ![Cloudflare Workers CI](https://github.com/dajiaji/bhttp-js/actions/workflows/ci_cfw.yml/badge.svg)
+![bun CI](https://github.com/dajiaji/bhttp-js/actions/workflows/ci_bun.yml/badge.svg)
 [![codecov](https://codecov.io/gh/dajiaji/bhttp-js/branch/main/graph/badge.svg?token=7I7JGKDDJ2)](https://codecov.io/gh/dajiaji/bhttp-js)
 
 </div>
 
 <div align="center">
 A <a href="https://datatracker.ietf.org/doc/html/rfc9292">BHTTP (RFC9292: Binary Representation of HTTP Messages)</a> encoder and decoder written in TypeScript<br>for the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Request">Request</a>/<a href="https://developer.mozilla.org/en-US/docs/Web/API/Response">Response</a> interface of <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">Fetch API</a>.<br>
-This module works on web browsers, Node.js, Deno and Cloudflare Workers.
+This module works on web browsers, Node.js, Deno and various JavaScript runtimes.
 </div>
 
 <p></p>
