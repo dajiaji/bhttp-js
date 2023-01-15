@@ -22,12 +22,12 @@ jobs:
           deno-version: v1.x
       - run: |
           deno task dnt
-          cp npm/esm/*.js test/pages/src/
-          cp -rf npm/esm/src test/pages/src/
+          cp npm/esm/*.js test/runtimes/browsers/pages/src/
+          cp -rf npm/esm/src test/runtimes/browsers/pages/src/
       - uses: peaceiris/actions-gh-pages@v3
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          publish_dir: ./test/pages
+          publish_dir: ./test/runtimes/browsers/pages
 
   playwright-test:
     needs: pages
