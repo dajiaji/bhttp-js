@@ -4,18 +4,19 @@
     <script type="module">
       import { BHttpEncoder, BHttpDecoder } from './src/mod.js';
 
-    function hexStringToBytes(v) {
-      if (v.length === 0) {
-        return new Uint8Array([]);
+      function hexStringToBytes(v) {
+        if (v.length === 0) {
+          return new Uint8Array([]);
+        }
+        const res = v.match(/[\da-f]{2}/gi);
+        if (res == null) {
+          throw new Error("Not hex string.");
+        }
+        return new Uint8Array(res.map(function (h) {
+          return parseInt(h, 16);
+        }));
       }
-      const res = v.match(/[\da-f]{2}/gi);
-      if (res == null) {
-        throw new Error("Not hex string.");
-      }
-      return new Uint8Array(res.map(function (h) {
-        return parseInt(h, 16);
-      }));
-    }
+
       globalThis.run = async () => {
         let pass = 0;
         let fail = 0;
