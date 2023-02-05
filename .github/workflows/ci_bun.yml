@@ -15,13 +15,13 @@ defaults:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
       - uses: denoland/setup-deno@v1
         with:
           deno-version: v1.x
-      - run: deno bundle ../../../mod.ts src/bhttp.js
+      - run: deno bundle ../../../mod.ts ../bhttp.js
       - uses: antongolub/action-setup-bun@v1
         with:
           bun-version: 0.4
