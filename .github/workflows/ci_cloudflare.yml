@@ -24,7 +24,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: v18.x
-      - run: deno bundle ../../../mod.ts src/bhttp.js
+      - run: deno bundle ../../../mod.ts ../bhttp.js
       - name: Run test
         run: |
           npm install
