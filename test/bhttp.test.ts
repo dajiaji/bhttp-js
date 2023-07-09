@@ -4,6 +4,25 @@ import { describe, it } from "testing/bdd.ts";
 import { BHttpEncoder } from "../src/encoder.ts";
 import { BHttpDecoder } from "../src/decoder.ts";
 
+const isBrowser = () => typeof window !== "undefined";
+
+const isCloudflareWorkers = () => typeof caches !== "undefined";
+
+async function loadCrypto(): Promise<Crypto> {
+  if (isBrowser() || isCloudflareWorkers()) {
+    if (globalThis.crypto !== undefined) {
+      return globalThis.crypto;
+    }
+    // jsdom
+  }
+  try {
+    const { webcrypto } = await import("crypto"); // node:crypto
+    return (webcrypto as unknown as Crypto);
+  } catch (_e: unknown) {
+    throw new Error("Web Cryptograph API not supported");
+  }
+}
+
 describe("BHttpDecoder/Encoder", () => {
   describe("GET", () => {
     it("should encode and decode a GET request.", async () => {
@@ -23,6 +42,42 @@ describe("BHttpDecoder/Encoder", () => {
       let decodedReq = decoder.decodeRequest(binReq);
       // ArrayBuffer is also supported.
       decodedReq = decoder.decodeRequest(binReq.buffer);
+
+      const cryptoApi = await loadCrypto();
+      // const jwkKey = {
+      //   kty: "EC",
+      //   crv: "P-384",
+      //   // hkc: [0x0011, 0x0002, 0x0001],
+      //   alg: "HPKEv1-Base-DHKEM(P384,HKDF-SHA384)-HKDF-SHA384-AES128GCM",
+      //   // alg: "xxxx",
+      //   // d: "wouCtU7Nw4E8_7n5C1-xBjB4xqSb_liZhYMsy8MGgxUny6Q8NCoH9xSiviwLFfK_",
+      //   ext: true,
+      //   key_ops: ["deriveBits"],
+      //   x: "SzrRXmyI8VWFJg1dPUNbFcc9jZvjZEfH7ulKI1UkXAltd7RGWrcfFxqyGPcwu6AQ",
+      //   y: "hHUag3OvDzEr0uUQND4PXHQTXP5IDGdYhJhL-WLKjnGjQAw0rNGy5V29-aV-yseW",
+      // };
+      const jwkKey = {
+        kty: "OKP",
+        crv: "X25519",
+        kid: "X25519-01",
+        alg: "HPKEv1-Base-DHKEM(P384,HKDF-SHA384)-HKDF-SHA384-AES128GCM",
+        // hkc: [0x0011, 0x0002, 0x0001],
+        x: "y3wJq3uXPHeoCO4FubvTc7VcBuqpvUrSvU6ZMbHDTCI",
+        // d: "vsJ1oX5NNi0IGdwGldiac75r-Utmq3Jq4LGv48Q_Qc4",
+        ext: true,
+        key_ops: ["deriveBits"],
+      };
+
+      const _k = await cryptoApi.subtle.importKey(
+        "jwk",
+        jwkKey,
+        {
+          name: "ECDH",
+          namedCurve: "P-384",
+        },
+        true,
+        [],
+      );
 
       // assert
       assertEquals(
