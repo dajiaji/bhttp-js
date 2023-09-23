@@ -12,11 +12,8 @@
         "test/"
       ],
       "exclude": [
-        "samples/node/node_modules",
-        "test/playwright/node_modules",
-        "test/wrangler/node_modules",
+        "**/*/node_modules",
         "test/fastly/bin",
-        "test/fastly/node_modules",
         "test/fastly/pkg"
       ]
     }
@@ -25,11 +22,8 @@
     "files": {
       "include": ["samples/", "src/", "test/"],
       "exclude": [
-        "samples/node/node_modules",
-        "test/playwright/node_modules",
-        "test/wrangler/node_modules",
+        "**/*/node_modules",
         "test/fastly/bin",
-        "test/fastly/node_modules",
         "test/fastly/pkg"
       ]
     }
