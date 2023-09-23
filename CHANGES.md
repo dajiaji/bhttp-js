@@ -2,6 +2,22 @@
 
 ## Unreleased
 
+## Version 0.2.3
+
+Released 2023-09-23
+
+- [(#99) Add support for Node.js v20.](https://github.com/dajiaji/bhttp-js/pull/99)
+- [(#99) Merge import-map.json to deno.json.](https://github.com/dajiaji/bhttp-js/pull/99)
+- [(#99) Update dnt typeCheck to 'both'.](https://github.com/dajiaji/bhttp-js/pull/99)
+- [(#39) Add SECURITY.md.](https://github.com/dajiaji/bhttp-js/pull/39)
+- [(#31) Refactor test.](https://github.com/dajiaji/bhttp-js/pull/31)
+- Update dev dependencies.
+  - [(#99) Bump deno.land/std to 0.201.0.](https://github.com/dajiaji/bhttp-js/pull/99)
+  - [(#99) Bump deno.land/dnt to 0.38.1.](https://github.com/dajiaji/bhttp-js/pull/99)
+  - [(#98) Bump playwright/test to 1.38.1.](https://github.com/dajiaji/bhttp-js/pull/98)
+  - [(#87) Bump @fastly/js-compute to 3.2.1.](https://github.com/dajiaji/bhttp-js/pull/87)
+  - [(#40) Bump http-cache-semantics to 4.1.1.](https://github.com/dajiaji/bhttp-js/pull/40)
+
 ## Version 0.2.2
 
 Released 2023-01-15

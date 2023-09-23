@@ -5,11 +5,11 @@ await emptyDir("./npm");
 await build({
   entryPoints: ["./mod.ts"],
   outDir: "./npm",
-  typeCheck: true,
+  typeCheck: "both",
   test: true,
   declaration: true,
   scriptModule: "umd",
-  importMap: "./import-map.json",
+  importMap: "./deno.json",
   compilerOptions: {
     lib: ["es2021", "dom"],
   },

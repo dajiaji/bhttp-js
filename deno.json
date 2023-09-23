@@ -1,4 +1,8 @@
 {
+  "imports": {
+    "testing/": "https://deno.land/std@0.201.0/testing/",
+    "dnt": "https://deno.land/x/dnt@0.38.1/mod.ts"
+  },
   "fmt": {
     "files": {
       "include": [
@@ -12,11 +16,8 @@
         "test/"
       ],
       "exclude": [
-        "samples/node/node_modules",
-        "test/playwright/node_modules",
-        "test/wrangler/node_modules",
+        "**/*/node_modules",
         "test/fastly/bin",
-        "test/fastly/node_modules",
         "test/fastly/pkg"
       ]
     }
@@ -25,16 +26,12 @@
     "files": {
       "include": ["samples/", "src/", "test/"],
       "exclude": [
-        "samples/node/node_modules",
-        "test/playwright/node_modules",
-        "test/wrangler/node_modules",
+        "**/*/node_modules",
         "test/fastly/bin",
-        "test/fastly/node_modules",
         "test/fastly/pkg"
       ]
     }
   },
-  "importMap": "./import-map.json",
   "tasks": {
     "test": "deno fmt && deno lint && deno test test -A --fail-fast --doc --coverage=coverage --parallel --allow-read",
     "cov": "deno coverage ./coverage --lcov --exclude='test' --exclude='bundles'",
