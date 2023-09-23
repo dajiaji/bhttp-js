@@ -4,7 +4,6 @@ const dntGlobals = {
     Deno,
 };
 export const dntGlobalThis = createMergeProxy(globalThis, dntGlobals);
-// deno-lint-ignore ban-types
 function createMergeProxy(baseObj, extObj) {
     return new Proxy(baseObj, {
         get(_target, prop, _receiver) {
