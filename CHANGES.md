@@ -2,6 +2,22 @@
 
 ## Unreleased
 
+## Version 0.3.0
+
+Released 2023-11-26
+
+- [(#112) Add support for Node.js v21.](https://github.com/dajiaji/bhttp-js/pull/112)
+- [(#111) Use multiple versions (0.6.x, 0.7.x, 0.8.x, 1.x) on bun CI.](https://github.com/dajiaji/bhttp-js/pull/111)
+- [(#109) Fix error on dnt.ts.](https://github.com/dajiaji/bhttp-js/pull/109)
+- [(#109) Make dnt emit type declaration inline.](https://github.com/dajiaji/bhttp-js/pull/109)
+- Update dev dependencies.
+  - [(#110) Bump deno.land/std to 0.208.0.](https://github.com/dajiaji/bhttp-js/pull/110)
+  - [(#110) Bump deno.land/x/dnt to 0.39.0.](https://github.com/dajiaji/bhttp-js/pull/110)
+  - [(#109) Bump actions/checkout to v4.](https://github.com/dajiaji/bhttp-js/pull/109)
+  - [(#109) Bump actions/setup-node to v4.](https://github.com/dajiaji/bhttp-js/pull/109)
+  - [(#108) Bump playwright/test to 1.40.0.](https://github.com/dajiaji/bhttp-js/pull/108)
+  - [(#107) Bump @fastly/js-compute to 3.7.3.](https://github.com/dajiaji/bhttp-js/pull/107)
+
 ## Version 0.2.3
 
 Released 2023-09-23

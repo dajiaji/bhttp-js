@@ -64,7 +64,7 @@ Using esm.sh:
 ```html
 <!-- use a specific version -->
 <script type="module">
-  import * as bhttp from "https://esm.sh/bhttp-js@0.2.3";
+  import * as bhttp from "https://esm.sh/bhttp-js@0.3.0";
   // ...
 </script>
 
@@ -80,7 +80,7 @@ Using unpkg:
 ```html
 <!-- use a specific version -->
 <script type="module">
-  import * as bhttp from "https://unpkg.com/bhttp-js@0.2.3/esm/mod.js";
+  import * as bhttp from "https://unpkg.com/bhttp-js@0.3.0/esm/mod.js";
   // ...
 </script>
 ```
@@ -105,7 +105,7 @@ Using deno.land:
 
 ```js
 // use a specific version
-import * as bhttp from "https://deno.land/x/bhttp@0.2.3/mod.ts";
+import * as bhttp from "https://deno.land/x/bhttp@0.3.0/mod.ts";
 
 // use the latest stable version
 import * as bhttp from "https://deno.land/x/bhttp/mod.ts";
@@ -116,15 +116,15 @@ import * as bhttp from "https://deno.land/x/bhttp/mod.ts";
 Downloads a single js file from esm.sh:
 
 ```sh
-curl -sS -o $YOUR_SRC_PATH/bhttp.js https://esm.sh/v86/bhttp-js@0.2.3/es2022/bhttp-js.js
+curl -sS -o $YOUR_SRC_PATH/bhttp.js https://esm.sh/v86/bhttp-js@0.3.0/es2022/bhttp-js.js
 # if you want to use a minified version:
-curl -sS -o $YOUR_SRC_PATH/bhttp.min.js https://esm.sh/v86/bhttp-js@0.2.3/es2022/bhttp.min.js
+curl -sS -o $YOUR_SRC_PATH/bhttp.min.js https://esm.sh/v86/bhttp-js@0.3.0/es2022/bhttp.min.js
 ```
 
 Emits a single js file by using `deno bundle`:
 
 ```sh
-deno bundle https://deno.land/x/bhttp@0.2.3/mod.ts > $YOUR_SRC_PATH/bhttp.js
+deno bundle https://deno.land/x/bhttp@0.3.0/mod.ts > $YOUR_SRC_PATH/bhttp.js
 ```
 
 ## Usage
@@ -140,7 +140,7 @@ BHTTP client on Web Browser:
   <head></head>
   <body>
     <script type="module">
-      import { BHttpEncoder, BHttpDecoder } from 'https://esm.sh/bhttp-js@0.2.3';
+      import { BHttpEncoder, BHttpDecoder } from 'https://esm.sh/bhttp-js@0.3.0';
 
       globalThis.doBHttp = async () => {
 
@@ -247,7 +247,7 @@ doBHttp();
 import {
   BHttpDecoder,
   BHttpEncoder,
-} from "https://deno.land/x/bhttp@0.2.3/mod.ts";
+} from "https://deno.land/x/bhttp@0.3.0/mod.ts";
 
 const req = new Request("https://www.example.com/hello.txt", {
   method: "GET",
