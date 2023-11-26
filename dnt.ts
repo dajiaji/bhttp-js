@@ -7,11 +7,11 @@ await build({
   outDir: "./npm",
   typeCheck: "both",
   test: true,
-  declaration: true,
+  declaration: "inline",
   scriptModule: "umd",
   importMap: "./deno.json",
   compilerOptions: {
-    lib: ["es2021", "dom"],
+    lib: ["ES2021", "DOM"],
   },
   shims: {
     deno: "dev",
