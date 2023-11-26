@@ -16,6 +16,11 @@ defaults:
 jobs:
   test:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        bun-version: [0.6.x, 0.7.x, 0.8.x, 1.x]
+
     steps:
       - uses: actions/checkout@v4
       - uses: denoland/setup-deno@v1
@@ -24,7 +29,7 @@ jobs:
       - run: deno bundle ../../../mod.ts ../bhttp.js
       - uses: antongolub/action-setup-bun@v1
         with:
-          bun-version: 0.4
+          bun-version: ${{ matrix.bun-version }}
       - name: Run test
         run: |
           nohup bun src/index.js &
