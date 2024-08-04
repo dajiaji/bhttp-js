@@ -2,6 +2,20 @@
 
 ## Unreleased
 
+## Version 0.3.1
+
+Released 2024-08-04
+
+- [(#141) Remove --local option from wrangler dev.](https://github.com/dajiaji/bhttp-js/pull/141)
+- [(#141) Add --config to deno test on test/runtimes/*.](https://github.com/dajiaji/bhttp-js/pull/141)
+- Update dev dependencies.
+  - [(#141) Bump @playwright/test to 1.45.3.](https://github.com/dajiaji/bhttp-js/pull/141)
+  - [(#141) Bump @fastly/js-compute to 3.19.0.](https://github.com/dajiaji/bhttp-js/pull/141)
+  - [(#141) Bump deno.land/std to 0.224.0](https://github.com/dajiaji/bhttp-js/pull/141)
+  - [(#141) Bump deno.land/x/dnt to 0.40.0](https://github.com/dajiaji/bhttp-js/pull/141)
+  - [(#141) Bump actions-gh-pages to v4](https://github.com/dajiaji/bhttp-js/pull/141)
+  - [(#141) Bump wrangler to 3.68.0](https://github.com/dajiaji/bhttp-js/pull/141)
+
 ## Version 0.3.0
 
 Released 2023-11-26
