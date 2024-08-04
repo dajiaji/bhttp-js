@@ -2,11 +2,11 @@
   "name": "wrangler",
   "version": "0.1.0",
   "devDependencies": {
-    "wrangler": "2.7.1"
+    "wrangler": "3.68.0"
   },
   "private": true,
   "scripts": {
-    "start": "wrangler dev --local=true",
+    "start": "wrangler dev",
     "deploy": "wrangler publish"
   }
 }

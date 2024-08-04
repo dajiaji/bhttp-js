@@ -30,4 +30,4 @@ jobs:
           npm install
           nohup fastly compute serve &
           sleep 20
-          deno test bhttp.spec.ts --allow-net
+          deno test bhttp.spec.ts --allow-net --config ../../../deno.json

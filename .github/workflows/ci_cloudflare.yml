@@ -30,4 +30,4 @@ jobs:
           npm install
           nohup npm start &
           sleep 3
-          deno test bhttp.spec.ts --allow-net
+          deno test bhttp.spec.ts --allow-net --config ../../../deno.json
