@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+## Version 0.3.2
+
+Released 2024-08-05
+
+- Update dev dependencies.
+  - [(#143) Bump @deno/dnt to 0.41.2.](https://github.com/dajiaji/bhttp-js/pull/143)
+
 ## Version 0.3.1
 
 Released 2024-08-04
