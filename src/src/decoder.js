@@ -1,61 +1,21 @@
 import * as consts from "./consts.js";
 import * as errors from "./errors.js";
 class InformationalResponse {
+    status;
+    headers;
     constructor(status) {
-        Object.defineProperty(this, "status", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "headers", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
         this.status = status;
         this.headers = new Headers();
     }
 }
 class DecoderContext {
+    buf;
+    p = 0;
+    framingIndicator = 0;
+    headers;
+    content;
+    trailers;
     constructor(buf) {
-        Object.defineProperty(this, "buf", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "p", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 0
-        });
-        Object.defineProperty(this, "framingIndicator", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 0
-        });
-        Object.defineProperty(this, "headers", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "content", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "trailers", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
         this.buf = buf;
         this.headers = new Headers();
         this.content = new Uint8Array(0);
@@ -63,32 +23,12 @@ class DecoderContext {
     }
 }
 class RequestDecoderContext extends DecoderContext {
+    method = "";
+    scheme = "";
+    authority = "";
+    path = "";
     constructor(buf) {
         super(buf);
-        Object.defineProperty(this, "method", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: ""
-        });
-        Object.defineProperty(this, "scheme", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: ""
-        });
-        Object.defineProperty(this, "authority", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: ""
-        });
-        Object.defineProperty(this, "path", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: ""
-        });
     }
     createRequest() {
         const input = this.scheme + "://" + this.authority + this.path;
@@ -111,20 +51,10 @@ class RequestDecoderContext extends DecoderContext {
     }
 }
 class ResponseDecoderContext extends DecoderContext {
+    status = 0;
+    informationalResponses;
     constructor(buf) {
         super(buf);
-        Object.defineProperty(this, "status", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 0
-        });
-        Object.defineProperty(this, "informationalResponses", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
         this.informationalResponses = new Array(0);
     }
     createResponse() {
@@ -135,13 +65,8 @@ class ResponseDecoderContext extends DecoderContext {
     }
 }
 export class BHttpDecoder {
+    _td;
     constructor() {
-        Object.defineProperty(this, "_td", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
         this._td = new TextDecoder();
     }
     decodeRequest(src) {
