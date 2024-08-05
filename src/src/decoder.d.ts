@@ -24,3 +24,4 @@ export declare class BHttpDecoder {
     private decodeVliAndValue;
     private decodeVli;
 }
+//# sourceMappingURL=decoder.d.ts.map

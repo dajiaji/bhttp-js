@@ -14,3 +14,4 @@ export declare class InvalidMessageError extends BHttpError {
 export declare class NotSupportedError extends BHttpError {
 }
 export {};
+//# sourceMappingURL=errors.d.ts.map

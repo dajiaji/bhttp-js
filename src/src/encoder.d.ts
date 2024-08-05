@@ -8,3 +8,4 @@ export declare class BHttpEncoder {
     private encodeVliAndValue;
     private encodeVli;
 }
+//# sourceMappingURL=encoder.d.ts.map

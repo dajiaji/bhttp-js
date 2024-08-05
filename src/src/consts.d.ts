@@ -5,3 +5,4 @@ export declare const VLI_LEN_1 = 0;
 export declare const VLI_LEN_2 = 64;
 export declare const VLI_LEN_4 = 128;
 export declare const VLI_LEN_8 = 192;
+//# sourceMappingURL=consts.d.ts.map
