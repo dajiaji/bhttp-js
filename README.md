@@ -1,16 +1,17 @@
 <h1 align="center">bhttp-js</h1>
 
 <div align="center">
-[![JSR](https://jsr.io/badges/@dajiaji/bhttp)](https://jsr.io/@dajiaji/bhttp)
-[![deno doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/x/bhttp/mod.ts)
-![Browsers CI](https://github.com/dajiaji/bhttp-js/actions/workflows/ci_browsers.yml/badge.svg)
-![Node.js CI](https://github.com/dajiaji/bhttp-js/actions/workflows/ci_node.yml/badge.svg)
-![Deno CI](https://github.com/dajiaji/bhttp-js/actions/workflows/ci.yml/badge.svg)
-![Cloudflare Workers CI](https://github.com/dajiaji/bhttp-js/actions/workflows/ci_cloudflare.yml/badge.svg)
-![@fastly/js-compute CI](https://github.com/dajiaji/bhttp-js/actions/workflows/ci_fastly.yml/badge.svg)
-![bun CI](https://github.com/dajiaji/bhttp-js/actions/workflows/ci_bun.yml/badge.svg)
-[![codecov](https://codecov.io/gh/dajiaji/bhttp-js/branch/main/graph/badge.svg?token=7I7JGKDDJ2)](https://codecov.io/gh/dajiaji/bhttp-js)
-
+<a href="https://jsr.io/@dajiaji/bhttp"><img src="https://jsr.io/badges/@dajiaji/bhttp" alt="JSR"/></a>
+<a href="https://doc.deno.land/https/deno.land/x/bhttp/mod.ts"><img src="https://doc.deno.land/badge.svg" alt="deno doc"/></a>
+<img src="https://github.com/dajiaji/bhttp-js/actions/workflows/ci_browsers.yml/badge.svg" alt="Browser CI" />
+<img src="https://github.com/dajiaji/bhttp-js/actions/workflows/ci_node.yml/badge.svg" alt="Node.js CI" />
+<img src="https://github.com/dajiaji/bhttp-js/actions/workflows/ci.yml/badge.svg" alt="Deno CI" />
+<img src="https://github.com/dajiaji/bhttp-js/actions/workflows/ci_cloudflare.yml/badge.svg" alt="Cloudflare Workers CI" />
+<img src="https://github.com/dajiaji/bhttp-js/actions/workflows/ci_fastly.yml/badge.svg" alt="@fastly/js-compute CI" />
+<img src="https://github.com/dajiaji/bhttp-js/actions/workflows/ci_bun.yml/badge.svg" alt="bun CI" />
+<a href="https://codecov.io/gh/dajiaji/bhttp-js">
+  <img src="https://codecov.io/gh/dajiaji/bhttp-js/branch/main/graph/badge.svg?token=7I7JGKDDJ2" alt="codecov" />
+</a>
 </div>
 
 <div align="center">
