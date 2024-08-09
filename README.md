@@ -1,7 +1,7 @@
 <h1 align="center">bhttp-js</h1>
 
 <div align="center">
-
+[![JSR](https://jsr.io/badges/@dajiaji/bhttp)](https://jsr.io/@dajiaji/bhttp)
 [![deno doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/x/bhttp/mod.ts)
 ![Browsers CI](https://github.com/dajiaji/bhttp-js/actions/workflows/ci_browsers.yml/badge.svg)
 ![Node.js CI](https://github.com/dajiaji/bhttp-js/actions/workflows/ci_node.yml/badge.svg)
@@ -101,30 +101,26 @@ yarn add bhttp-js
 
 ### Deno
 
-Using deno.land:
+Using jsr:
+
+```sh
+deno add @dajiaji/bhttp
+```
 
 ```js
-// use a specific version
-import * as bhttp from "https://deno.land/x/bhttp@0.3.2/mod.ts";
-
-// use the latest stable version
-import * as bhttp from "https://deno.land/x/bhttp/mod.ts";
+import * as bhttp from "@dajiaji/bhttp";
 ```
 
 ### Cloudflare Workers
 
-Downloads a single js file from esm.sh:
+Using jsr:
 
 ```sh
-curl -sS -o $YOUR_SRC_PATH/bhttp.js https://esm.sh/v86/bhttp-js@0.3.2/es2022/bhttp-js.js
-# if you want to use a minified version:
-curl -sS -o $YOUR_SRC_PATH/bhttp.min.js https://esm.sh/v86/bhttp-js@0.3.2/es2022/bhttp.min.js
+npx jsr add @dajiaji/bhttp
 ```
 
-Emits a single js file by using `deno bundle`:
-
-```sh
-deno bundle https://deno.land/x/bhttp@0.3.2/mod.ts > $YOUR_SRC_PATH/bhttp.js
+```js
+import * as bhttp from "@dajiaji/bhttp";
 ```
 
 ## Usage
@@ -244,10 +240,7 @@ doBHttp();
 ### Deno
 
 ```js
-import {
-  BHttpDecoder,
-  BHttpEncoder,
-} from "https://deno.land/x/bhttp@0.3.2/mod.ts";
+import { BHttpDecoder, BHttpEncoder } from "@dajiaji/bhttp";
 
 const req = new Request("https://www.example.com/hello.txt", {
   method: "GET",

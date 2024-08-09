@@ -1,4 +1,7 @@
 {
+  "name": "@dajiaji/bhttp",
+  "version": "0.3.2",
+  "exports": "./mod.ts",
   "imports": {
     "@deno/dnt": "jsr:@deno/dnt@^0.41.2",
     "@std/assert": "jsr:@std/assert@1.0.0",

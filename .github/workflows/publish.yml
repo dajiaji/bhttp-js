@@ -7,6 +7,9 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -21,6 +24,9 @@ jobs:
           npm install -g esbuild
           deno task dnt
           deno task minify > ./npm/bhttp.min.js
+      - name: Run deno publish
+        run: |
+          npx jsr publish
       - working-directory: ./npm
         run: npm publish
         env:
