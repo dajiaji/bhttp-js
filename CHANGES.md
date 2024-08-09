@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+## Version 0.3.3
+
+Released 2024-08-09
+
+- [(#148) Deploy to JSR.](https://github.com/dajiaji/bhttp-js/pull/148)
+- [(#145) Introduce jsr:@std for testing.](https://github.com/dajiaji/bhttp-js/pull/145)
+- Update dev dependencies.
+  - [(#147) Bump @fastly/js-compute to 3.20.0.](https://github.com/dajiaji/bhttp-js/pull/147)
+  - [(#146) Bump @playwright/test to 1.46.0.](https://github.com/dajiaji/bhttp-js/pull/146)
+
 ## Version 0.3.2
 
 Released 2024-08-05
