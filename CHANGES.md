@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+## Version 0.3.4
+
+Released 2024-08-11
+
+- [(#153) Quit to use deno bundle.](https://github.com/dajiaji/bhttp-js/pull/153)
+- [(#153) Remove files from deno.json.](https://github.com/dajiaji/bhttp-js/pull/153)
+- [(#152) Add samples/deno.](https://github.com/dajiaji/bhttp-js/pull/152)
+- [(#151) Use publish.exclude on deno.json.](https://github.com/dajiaji/bhttp-js/pull/151)
+- [(#150) Use <a> for badges on README.](https://github.com/dajiaji/bhttp-js/pull/150)
+
 ## Version 0.3.3
 
 Released 2024-08-09
