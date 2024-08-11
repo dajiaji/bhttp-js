@@ -9,10 +9,6 @@ on:
 permissions:
   contents: read
 
-defaults:
-  run:
-    working-directory: ./test/runtimes/cloudflare
-
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -24,8 +20,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: v18.x
-      - run: deno bundle ../../../mod.ts ../bhttp.js
+      - name: Run dnt
+        run: deno run -A dnt.ts 0.0.0
+      - name: Run npm pack
+        working-directory: ./npm
+        run: npm pack
       - name: Run test
+        working-directory: ./test/runtimes/cloudflare
         run: |
           npm install
           nohup npm start &

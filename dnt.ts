@@ -1,6 +1,7 @@
 import { build, emptyDir } from "@deno/dnt";
 
 await emptyDir("./npm");
+await emptyDir("test/runtimes/cloudflare/node_modules");
 
 await build({
   entryPoints: ["./mod.ts"],
