@@ -1,0 +1,8 @@
+{
+  "tasks": {
+    "dev": "deno run --watch main.ts"
+  },
+  "imports": {
+    "@dajiaji/bhttp": "jsr:@dajiaji/bhttp@^0.3.3"
+  }
+}
