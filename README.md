@@ -65,7 +65,7 @@ Using esm.sh:
 ```html
 <!-- use a specific version -->
 <script type="module">
-  import * as bhttp from "https://esm.sh/bhttp-js@0.3.3";
+  import * as bhttp from "https://esm.sh/bhttp-js@0.3.4";
   // ...
 </script>
 
@@ -81,7 +81,7 @@ Using unpkg:
 ```html
 <!-- use a specific version -->
 <script type="module">
-  import * as bhttp from "https://unpkg.com/bhttp-js@0.3.3/esm/mod.js";
+  import * as bhttp from "https://unpkg.com/bhttp-js@0.3.4/esm/mod.js";
   // ...
 </script>
 ```
@@ -137,7 +137,7 @@ BHTTP client on Web Browser:
   <head></head>
   <body>
     <script type="module">
-      import { BHttpEncoder, BHttpDecoder } from 'https://esm.sh/bhttp-js@0.3.3';
+      import { BHttpEncoder, BHttpDecoder } from 'https://esm.sh/bhttp-js@0.3.4';
 
       globalThis.doBHttp = async () => {
 
