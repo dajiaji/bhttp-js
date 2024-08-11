@@ -16,33 +16,29 @@
     ]
   },
   "fmt": {
-    "files": {
-      "include": [
-        "README.md",
-        "CHANGES.md",
-        "deno.json",
-        "import-map.json",
-        "dnt.ts",
-        "samples/",
-        "src/",
-        "test/"
-      ],
-      "exclude": [
-        "**/*/node_modules",
-        "test/fastly/bin",
-        "test/fastly/pkg"
-      ]
-    }
+    "include": [
+      "README.md",
+      "CHANGES.md",
+      "deno.json",
+      "import-map.json",
+      "dnt.ts",
+      "samples/",
+      "src/",
+      "test/"
+    ],
+    "exclude": [
+      "**/*/node_modules",
+      "test/fastly/bin",
+      "test/fastly/pkg"
+    ]
   },
   "lint": {
-    "files": {
-      "include": ["samples/", "src/", "test/"],
-      "exclude": [
-        "**/*/node_modules",
-        "test/fastly/bin",
-        "test/fastly/pkg"
-      ]
-    }
+    "include": ["samples/", "src/", "test/"],
+    "exclude": [
+      "**/*/node_modules",
+      "test/fastly/bin",
+      "test/fastly/pkg"
+    ]
   },
   "tasks": {
     "test": "deno fmt && deno lint && deno test test -A --fail-fast --doc --coverage=coverage --parallel --allow-read",
