@@ -1,7 +1,7 @@
 import { assertEquals } from "@std/assert";
 import { describe, it } from "@std/testing/bdd";
 
-import { BHttpDecoder, BHttpEncoder } from "@dajiaji/bhttp";
+import { BHttpDecoder, BHttpEncoder } from "../../../mod.ts";
 
 describe("Cloudflare Workers", () => {
   describe("GET", () => {
