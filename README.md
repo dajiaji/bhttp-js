@@ -31,14 +31,15 @@ This module works on web browsers, Node.js, Deno and various other JavaScript ru
 
 - [Supported Environments](#supported-environments)
 - [Installation](#installation)
-  - [Web Browser](#web-browser)
-  - [Node.js](#nodejs)
   - [Deno](#deno)
+  - [Node.js](#nodejs)
   - [Cloudflare Workers](#cloudflare-workers)
+  - [Web Browser](#web-browser)
 - [Usage](#usage)
-  - [Web Browser / Cloudflare Workers](#web-browser--cloudflare-workers)
-  - [Node.js](#nodejs-1)
   - [Deno](#deno-1)
+  - [Node.js](#nodejs-1)
+  - [Cloudflare Workers](#cloudflare-workers-1)
+  - [Web Browser](#web-browser-1)
 - [Contributing](#contributing)
 - [References](#references)
 
@@ -55,6 +56,44 @@ This module works on web browsers, Node.js, Deno and various other JavaScript ru
 - **@fastly/js-compute**
 
 ## Installation
+
+### Deno
+
+Using jsr:
+
+```sh
+deno add @dajiaji/bhttp
+```
+
+```js
+import * as bhttp from "@dajiaji/bhttp";
+```
+
+### Node.js
+
+Using npm:
+
+```sh
+npm install bhttp-js
+```
+
+Using yarn:
+
+```sh
+yarn add bhttp-js
+```
+
+### Cloudflare Workers
+
+Using jsr:
+
+```sh
+npx jsr add @dajiaji/bhttp
+```
+
+```js
+import * as bhttp from "@dajiaji/bhttp";
+```
 
 ### Web Browser
 
@@ -86,49 +125,59 @@ Using unpkg:
 </script>
 ```
 
-### Node.js
-
-Using npm:
-
-```sh
-npm install bhttp-js
-```
-
-Using yarn:
-
-```sh
-yarn add bhttp-js
-```
-
-### Deno
-
-Using jsr:
-
-```sh
-deno add @dajiaji/bhttp
-```
-
-```js
-import * as bhttp from "@dajiaji/bhttp";
-```
-
-### Cloudflare Workers
-
-Using jsr:
-
-```sh
-npx jsr add @dajiaji/bhttp
-```
-
-```js
-import * as bhttp from "@dajiaji/bhttp";
-```
-
 ## Usage
 
 This section shows some typical usage examples.
 
-### Web Browser / Cloudflare Workers
+### Deno
+
+```js
+import { BHttpDecoder, BHttpEncoder } from "@dajiaji/bhttp";
+
+const req = new Request("https://www.example.com/hello.txt", {
+  method: "GET",
+  headers: {
+    "User-Agent": "curl/7.16.3 libcurl/7.16.3 OpenSSL/0.9.7l zlib/1.2.3",
+    "Accept-Language": "en, mi",
+  },
+});
+
+// Encode a Request object to a BHTTP binary string.
+const encoder = new BHttpEncoder();
+const binReq = await encoder.encodeRequest(req);
+
+// Decode the BHTTP binary string to a Request object.
+const decoder = new BHttpDecoder();
+const decodedReq = decoder.decodeRequest(binReq);
+```
+
+### Node.js
+
+```js
+const { BHttpEncoder, BHttpDecoder } = require("bhttp-js");
+
+async function doBHttp() {
+  const req = new Request("https://www.example.com/hello.txt", {
+    method: "GET",
+    headers: {
+      "User-Agent": "curl/7.16.3 libcurl/7.16.3 OpenSSL/0.9.7l zlib/1.2.3",
+      "Accept-Language": "en, mi",
+    },
+  });
+
+  // Encode a Request object to a BHTTP binary string.
+  const encoder = new BHttpEncoder();
+  const binReq = await encoder.encodeRequest(req);
+
+  // Decode the BHTTP binary string to a Request object.
+  const decoder = new BHttpDecoder();
+  const decodedReq = decoder.decodeRequest(binReq);
+}
+
+doBHttp();
+```
+
+### Cloudflare Workers
 
 BHTTP client on Web Browser:
 
@@ -170,6 +219,8 @@ BHTTP client on Web Browser:
 </html>
 ```
 
+### Web Browser
+
 BHTTP server on Cloutflare Workers:
 
 ```js
@@ -210,54 +261,6 @@ export default {
     );
   },
 };
-```
-
-### Node.js
-
-```js
-const { BHttpEncoder, BHttpDecoder } = require("bhttp-js");
-
-async function doBHttp() {
-  const req = new Request("https://www.example.com/hello.txt", {
-    method: "GET",
-    headers: {
-      "User-Agent": "curl/7.16.3 libcurl/7.16.3 OpenSSL/0.9.7l zlib/1.2.3",
-      "Accept-Language": "en, mi",
-    },
-  });
-
-  // Encode a Request object to a BHTTP binary string.
-  const encoder = new BHttpEncoder();
-  const binReq = await encoder.encodeRequest(req);
-
-  // Decode the BHTTP binary string to a Request object.
-  const decoder = new BHttpDecoder();
-  const decodedReq = decoder.decodeRequest(binReq);
-}
-
-doBHttp();
-```
-
-### Deno
-
-```js
-import { BHttpDecoder, BHttpEncoder } from "@dajiaji/bhttp";
-
-const req = new Request("https://www.example.com/hello.txt", {
-  method: "GET",
-  headers: {
-    "User-Agent": "curl/7.16.3 libcurl/7.16.3 OpenSSL/0.9.7l zlib/1.2.3",
-    "Accept-Language": "en, mi",
-  },
-});
-
-// Encode a Request object to a BHTTP binary string.
-const encoder = new BHttpEncoder();
-const binReq = await encoder.encodeRequest(req);
-
-// Decode the BHTTP binary string to a Request object.
-const decoder = new BHttpDecoder();
-const decodedReq = decoder.decodeRequest(binReq);
 ```
 
 ## Contributing
