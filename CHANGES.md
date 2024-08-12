@@ -2,6 +2,18 @@
 
 ## Unreleased
 
+## Version 0.3.5
+
+Released 2024-08-13
+
+- [(#165) Refine README to follow JSR support.](https://github.com/dajiaji/bhttp-js/pull/165)
+- [(#164) Fix dnt error with node_modules.](https://github.com/dajiaji/bhttp-js/pull/164)
+- [(#162) Make Bun test use JSR.](https://github.com/dajiaji/bhttp-js/pull/162)
+- [(#161) Add Node.js 22 to CI.](https://github.com/dajiaji/bhttp-js/pull/161)
+- [(#159) Add sample for Cloudflare Workers.](https://github.com/dajiaji/bhttp-js/pull/159)
+- [(#158) Add sample for Bun.](https://github.com/dajiaji/bhttp-js/pull/158)
+- [(#156) Make cloudflare test use JSR.](https://github.com/dajiaji/bhttp-js/pull/156)
+
 ## Version 0.3.4
 
 Released 2024-08-11

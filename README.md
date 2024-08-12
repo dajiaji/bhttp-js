@@ -66,7 +66,7 @@ Starting from version 0.3.4, `bhttp-js` is available from the
 [JSR registry](https://jsr.io). From this version onwards, please use JSR import
 instead of HTTPS import in Deno.
 
-**JSR imoprt (recommended from ^0.3.4):**
+**JSR imoprt (recommended on `>=0.3.4`):**
 
 Add `bhttp-js` package using the commands below:
 
@@ -219,7 +219,7 @@ Followings are how to use with typical CDNs. Other CDNs can be used as well.
 ```html
 <!-- use a specific version -->
 <script type="module">
-  import { BHttpDecoder, BhttpEncoder } from "https://esm.sh/bhttp-js@0.3.4";
+  import { BHttpDecoder, BhttpEncoder } from "https://esm.sh/bhttp-js@0.3.5";
   // ...
 </script>
 
@@ -235,7 +235,7 @@ Followings are how to use with typical CDNs. Other CDNs can be used as well.
 ```html
 <!-- use a specific version -->
 <script type="module">
-  import { BHttpDecoder, BhttpEncoder } from "https://unpkg.com/bhttp-js@0.3.4/esm/mod.js";
+  import { BHttpDecoder, BhttpEncoder } from "https://unpkg.com/bhttp-js@0.3.5/esm/mod.js";
   // ...
 </script>
 ```
@@ -381,7 +381,7 @@ BHTTP client on Web Browser:
   <head></head>
   <body>
     <script type="module">
-      import { BHttpEncoder, BHttpDecoder } from "https://esm.sh/bhttp-js@0.3.4";
+      import { BHttpEncoder, BHttpDecoder } from "https://esm.sh/bhttp-js@0.3.5";
 
       globalThis.doBHttp = async () => {
 
