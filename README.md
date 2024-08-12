@@ -2,7 +2,6 @@
 
 <div align="center">
 <a href="https://jsr.io/@dajiaji/bhttp"><img src="https://jsr.io/badges/@dajiaji/bhttp" alt="JSR"/></a>
-<a href="https://doc.deno.land/https/deno.land/x/bhttp/mod.ts"><img src="https://doc.deno.land/badge.svg" alt="deno doc"/></a>
 <img src="https://github.com/dajiaji/bhttp-js/actions/workflows/ci_browsers.yml/badge.svg" alt="Browser CI" />
 <img src="https://github.com/dajiaji/bhttp-js/actions/workflows/ci_node.yml/badge.svg" alt="Node.js CI" />
 <img src="https://github.com/dajiaji/bhttp-js/actions/workflows/ci.yml/badge.svg" alt="Deno CI" />
@@ -23,7 +22,7 @@ This module works on web browsers, Node.js, Deno and various other JavaScript ru
 
 <div align="center">
 
-[Documentation](https://doc.deno.land/https://deno.land/x/bhttp/mod.ts)
+[Documentation](https://jsr.io/@dajiaji/bhttp/doc)
 
 </div>
 
@@ -31,149 +30,310 @@ This module works on web browsers, Node.js, Deno and various other JavaScript ru
 
 - [Supported Environments](#supported-environments)
 - [Installation](#installation)
-  - [Web Browser](#web-browser)
-  - [Node.js](#nodejs)
   - [Deno](#deno)
+  - [Node.js](#nodejs)
+  - [Bun](#bun)
   - [Cloudflare Workers](#cloudflare-workers)
+  - [Web Browser](#web-browser)
 - [Usage](#usage)
-  - [Web Browser / Cloudflare Workers](#web-browser--cloudflare-workers)
-  - [Node.js](#nodejs-1)
   - [Deno](#deno-1)
+  - [Node.js](#nodejs-1)
+  - [Bun](#bun-1)
+  - [Cloudflare Workers](#cloudflare-workers-1)
+  - [Web Browser](#web-browser-1)
 - [Contributing](#contributing)
 - [References](#references)
 
 ## Supported Environments
 
-- **Web browsers** which support
-  [Request](https://developer.mozilla.org/en-US/docs/Web/API/Request)/[Response](https://developer.mozilla.org/en-US/docs/Web/API/Response)
-  interface of
-  [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
-- **Node.js**: 18.x, 19.x, 20.x, 21.x, 22.x
+`bhttp-js` can be used in all JavaScript runtimes which support
+[Request](https://developer.mozilla.org/en-US/docs/Web/API/Request)/[Response](https://developer.mozilla.org/en-US/docs/Web/API/Response)
+interface of
+[Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API):
+
 - **Deno**: 1.x
-- **bun**: 0.x, 1.x
+- **Node.js**: 18.x, 19.x, 20.x, 21.x, 22.x
+- **Bun**: 0.x, 1.x
 - **Cloudflare Workers**
 - **@fastly/js-compute**
+- **Web browsers**: Chrome, Edge, Firefox, Safari and so on.
 
 ## Installation
 
-### Web Browser
-
-Followings are how to use with typical CDNs. Other CDNs can be used as well.
-
-Using esm.sh:
-
-```html
-<!-- use a specific version -->
-<script type="module">
-  import * as bhttp from "https://esm.sh/bhttp-js@0.3.4";
-  // ...
-</script>
-
-<!-- use the latest stable version -->
-<script type="module">
-  import * as bhttp from "https://esm.sh/bhttp-js";
-  // ...
-</script>
-```
-
-Using unpkg:
-
-```html
-<!-- use a specific version -->
-<script type="module">
-  import * as bhttp from "https://unpkg.com/bhttp-js@0.3.4/esm/mod.js";
-  // ...
-</script>
-```
-
-### Node.js
-
-Using npm:
-
-```sh
-npm install bhttp-js
-```
-
-Using yarn:
-
-```sh
-yarn add bhttp-js
-```
-
 ### Deno
 
-Using jsr:
+Starting from version 0.3.4, `bhttp-js` is available from the
+[JSR registry](https://jsr.io). From this version onwards, please use JSR import
+instead of HTTPS import in Deno.
+
+**JSR imoprt (recommended from ^0.3.4):**
+
+Add `bhttp-js` package using the commands below:
 
 ```sh
 deno add @dajiaji/bhttp
 ```
 
+After adding the package, you will have an import map entry in `deno.json` that
+looks something like this:
+
 ```js
-import * as bhttp from "@dajiaji/bhttp";
+{
+  "imports": {
+    "@dajiaji/bhttp": "jsr:@dajiaji/bhttp@^<SEMVER>"
+  }
+}
+```
+
+Then, you can use the module from code like this:
+
+```js
+import { BHttpDecoder, BHttpEncoder } from "@dajiaji/bhttp";
+```
+
+**HTTPS import (deprecated):**
+
+```js
+import {
+  BHttpDecoder,
+  BHttpEncoder,
+} from "https://deno.land/x/bhttp@<SEMVER>/mod.ts";
+```
+
+### Node.js
+
+**Using npm, yarn or pnpm:**
+
+```sh
+npm add bhttp-js
+yarn add bhttp-js
+pnpm add bhttp-js
+```
+
+After adding the package, you will have a dependency entry in `package.json`
+that looks something like this:
+
+```js
+{
+  "dependencies": {
+    "bhttp-js": "^<SEMVER>"
+  }
+}
+```
+
+Then, you can use the module from code like this:
+
+```js
+import { BHttpDecoder, BHttpEncoder } from "bhttp-js";
+// or as a CommonJS module
+// const { BHttpEncoder, BHttpDecoder } = require("bhttp-js");
+// ...
+```
+
+**Using jsr:**
+
+```sh
+npx jsr add @dajiaji/bhttp
+yarn dlx jsr add @dajiaji/bhttp
+pnpm dlx jsr add @dajiaji/bhttp
+```
+
+After adding the package, you will have a dependency entry in `package.json`
+that looks something like this:
+
+```js
+{
+  "dependencies": {
+    "@dajiaji/bhttp": "npm:@jsr/dajiaji__bhttp@^<SEMVER>"
+  }
+}
+```
+
+Then, you can use the module from code like this:
+
+```js
+import { BHttpDecoder, BHttpEncoder } from "@dajiaji/bhttp";
+// ...
 ```
 
 ### Cloudflare Workers
 
-Using jsr:
+**Using jsr:**
 
 ```sh
 npx jsr add @dajiaji/bhttp
+yarn dlx jsr add @dajiaji/bhttp
+pnpm dlx jsr add @dajiaji/bhttp
 ```
 
+After adding the package, you will have a dependency entry in `package.json`
+that looks something like this:
+
 ```js
-import * as bhttp from "@dajiaji/bhttp";
+{
+  "dependencies": {
+    "@dajiaji/bhttp": "npm:@jsr/dajiaji__bhttp@^<SEMVER>"
+  }
+}
+```
+
+Then, you can use the module from code like this:
+
+```js
+import { BHttpDecoder, BHttpEncoder } from "@dajiaji/bhttp";
+// ...
+```
+
+### Bun
+
+**Using jsr:**
+
+```sh
+bunx jsr add @dajiaji/bhttp
+```
+
+After adding the package, you will have a dependency entry in `package.json`
+that looks something like this:
+
+```js
+{
+  "dependencies": {
+    "@dajiaji/bhttp": "npm:@jsr/dajiaji__bhttp"
+  }
+}
+```
+
+Then, you can use the module from code like this:
+
+```js
+import { BHttpDecoder, BHttpEncoder } from "@dajiaji/bhttp";
+// ...
+```
+
+### Web Browser
+
+Followings are how to use with typical CDNs. Other CDNs can be used as well.
+
+**Using esm.sh:**
+
+```html
+<!-- use a specific version -->
+<script type="module">
+  import { BHttpDecoder, BhttpEncoder } from "https://esm.sh/bhttp-js@0.3.4";
+  // ...
+</script>
+
+<!-- use the latest stable version -->
+<script type="module">
+  import { BHttpDecoder, BhttpEncoder } from "https://esm.sh/bhttp-js";
+  // ...
+</script>
+```
+
+**Using unpkg:**
+
+```html
+<!-- use a specific version -->
+<script type="module">
+  import { BHttpDecoder, BhttpEncoder } from "https://unpkg.com/bhttp-js@0.3.4/esm/mod.js";
+  // ...
+</script>
 ```
 
 ## Usage
 
 This section shows some typical usage examples.
 
-### Web Browser / Cloudflare Workers
+### Deno
 
-BHTTP client on Web Browser:
+See [samples/deno](./samples/deno/).
 
 ```js
-<html>
-  <head></head>
-  <body>
-    <script type="module">
-      import { BHttpEncoder, BHttpDecoder } from 'https://esm.sh/bhttp-js@0.3.4';
+import { BHttpDecoder, BHttpEncoder } from "@dajiaji/bhttp";
 
-      globalThis.doBHttp = async () => {
+const req = new Request("https://www.example.com/hello.txt", {
+  method: "GET",
+  headers: {
+    "User-Agent": "curl/7.16.3 libcurl/7.16.3 OpenSSL/0.9.7l zlib/1.2.3",
+    "Accept-Language": "en, mi",
+  },
+});
 
-        try {
-          const encoder = new BHttpEncoder();
-          const req = new Request("https://target.example/query?foo=bar");
-          const bReq = await encoder.encodeRequest(req);
-          const res = await fetch("https://bin.example/to_target", {
-            method: "POST",
-            headers: {
-              "Content-Type": "message/bhttp",
-            },
-            body: bReq,
-          });
+// Encode a Request object to a BHTTP binary string.
+const encoder = new BHttpEncoder();
+const binReq = await encoder.encodeRequest(req);
 
-          const decoder = new BHttpDecoder();
-          const decodedRes = decoder.decodeResponse(await res.arrayBuffer());
-          // decodedRes.status === 200;
-          const body = await decodedRes.text();
-          // body === "baz"
-
-        } catch (err) {
-          alert(err.message);
-        }
-      }
-      
-    </script>
-    <button type="button" onclick="doBHttp()">do BHTTP</button>
-  </body>
-</html>
+// Decode the BHTTP binary string to a Request object.
+const decoder = new BHttpDecoder();
+const decodedReq = decoder.decodeRequest(binReq);
 ```
+
+### Node.js
+
+See [samples/node](./samples/bun/).
+
+```js
+// via `npm add bhttp-js`
+import { BHttpDecoder, BHttpEncoder } from "bhttp-js";
+// or as a CommonJS module
+// const { BHttpEncoder, BHttpDecoder } = require("bhttp-js");
+
+// via `npx jsr add @dajiaji/bhttp`
+// import { BHttpDecoder, BHttpEncoder } from "@dajiaji/bhttp";
+
+async function doBHttp() {
+  const req = new Request("https://www.example.com/hello.txt", {
+    method: "GET",
+    headers: {
+      "User-Agent": "curl/7.16.3 libcurl/7.16.3 OpenSSL/0.9.7l zlib/1.2.3",
+      "Accept-Language": "en, mi",
+    },
+  });
+
+  // Encode a Request object to a BHTTP binary string.
+  const encoder = new BHttpEncoder();
+  const binReq = await encoder.encodeRequest(req);
+
+  // Decode the BHTTP binary string to a Request object.
+  const decoder = new BHttpDecoder();
+  const decodedReq = decoder.decodeRequest(binReq);
+}
+
+doBHttp();
+```
+
+### Bun
+
+See [samples/bun](./samples/bun/).
+
+```js
+import { BHttpDecoder, BHttpEncoder } from "@dajiaji/bhttp";
+
+const req = new Request("https://www.example.com/hello.txt", {
+  method: "GET",
+  headers: {
+    "User-Agent": "curl/7.16.3 libcurl/7.16.3 OpenSSL/0.9.7l zlib/1.2.3",
+    "Accept-Language": "en, mi",
+  },
+});
+
+// Encode a Request object to a BHTTP binary string.
+const encoder = new BHttpEncoder();
+const binReq = await encoder.encodeRequest(req);
+
+// Decode the BHTTP binary string to a Request object.
+const decoder = new BHttpDecoder();
+const decodedReq = decoder.decodeRequest(binReq);
+```
+
+### Cloudflare Workers
+
+See [samples/cloudflare](./samples/cloudflare/).
 
 BHTTP server on Cloutflare Workers:
 
 ```js
-import { BHttpDecoder, BHttpEncoder } from "./bhttp.js";
+import { BHttpDecoder, BHttpEncoder } from "@dajiaji/bhttp";
 
 export default {
   async fetch(request) {
@@ -212,52 +372,46 @@ export default {
 };
 ```
 
-### Node.js
+### Web Browser
+
+BHTTP client on Web Browser:
 
 ```js
-const { BHttpEncoder, BHttpDecoder } = require("bhttp-js");
+<html>
+  <head></head>
+  <body>
+    <script type="module">
+      import { BHttpEncoder, BHttpDecoder } from "https://esm.sh/bhttp-js@0.3.4";
 
-async function doBHttp() {
-  const req = new Request("https://www.example.com/hello.txt", {
-    method: "GET",
-    headers: {
-      "User-Agent": "curl/7.16.3 libcurl/7.16.3 OpenSSL/0.9.7l zlib/1.2.3",
-      "Accept-Language": "en, mi",
-    },
-  });
+      globalThis.doBHttp = async () => {
 
-  // Encode a Request object to a BHTTP binary string.
-  const encoder = new BHttpEncoder();
-  const binReq = await encoder.encodeRequest(req);
+        try {
+          const encoder = new BHttpEncoder();
+          const req = new Request("https://target.example/query?foo=bar");
+          const bReq = await encoder.encodeRequest(req);
+          const res = await fetch("https://bin.example/to_target", {
+            method: "POST",
+            headers: {
+              "Content-Type": "message/bhttp",
+            },
+            body: bReq,
+          });
 
-  // Decode the BHTTP binary string to a Request object.
-  const decoder = new BHttpDecoder();
-  const decodedReq = decoder.decodeRequest(binReq);
-}
+          const decoder = new BHttpDecoder();
+          const decodedRes = decoder.decodeResponse(await res.arrayBuffer());
+          // decodedRes.status === 200;
+          const body = await decodedRes.text();
+          // body === "baz"
 
-doBHttp();
-```
-
-### Deno
-
-```js
-import { BHttpDecoder, BHttpEncoder } from "@dajiaji/bhttp";
-
-const req = new Request("https://www.example.com/hello.txt", {
-  method: "GET",
-  headers: {
-    "User-Agent": "curl/7.16.3 libcurl/7.16.3 OpenSSL/0.9.7l zlib/1.2.3",
-    "Accept-Language": "en, mi",
-  },
-});
-
-// Encode a Request object to a BHTTP binary string.
-const encoder = new BHttpEncoder();
-const binReq = await encoder.encodeRequest(req);
-
-// Decode the BHTTP binary string to a Request object.
-const decoder = new BHttpDecoder();
-const decodedReq = decoder.decodeRequest(binReq);
+        } catch (err) {
+          alert(err.message);
+        }
+      }
+      
+    </script>
+    <button type="button" onclick="doBHttp()">do BHTTP</button>
+  </body>
+</html>
 ```
 
 ## Contributing
