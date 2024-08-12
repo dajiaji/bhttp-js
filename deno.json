@@ -28,6 +28,8 @@
     ],
     "exclude": [
       "**/*/node_modules",
+      "samples/**/*/node_modules",
+      "samples/**/*/.wrangler",
       "test/fastly/bin",
       "test/fastly/pkg"
     ]
@@ -36,6 +38,8 @@
     "include": ["samples/", "src/", "test/"],
     "exclude": [
       "**/*/node_modules",
+      "samples/**/*/node_modules",
+      "samples/**/*/.wrangler",
       "test/fastly/bin",
       "test/fastly/pkg"
     ]
