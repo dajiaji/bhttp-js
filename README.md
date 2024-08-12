@@ -48,9 +48,9 @@ This module works on web browsers, Node.js, Deno and various other JavaScript ru
   [Request](https://developer.mozilla.org/en-US/docs/Web/API/Request)/[Response](https://developer.mozilla.org/en-US/docs/Web/API/Response)
   interface of
   [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
-- **Node.js**: 18.x, 19.x, 20.x
+- **Node.js**: 18.x, 19.x, 20.x, 21.x, 22.x
 - **Deno**: 1.x
-- **bun**: 0.3-
+- **bun**: 0.x, 1.x
 - **Cloudflare Workers**
 - **@fastly/js-compute**
 
