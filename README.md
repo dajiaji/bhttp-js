@@ -32,11 +32,13 @@ This module works on web browsers, Node.js, Deno and various other JavaScript ru
 - [Installation](#installation)
   - [Deno](#deno)
   - [Node.js](#nodejs)
+  - [Bun](#bun)
   - [Cloudflare Workers](#cloudflare-workers)
   - [Web Browser](#web-browser)
 - [Usage](#usage)
   - [Deno](#deno-1)
   - [Node.js](#nodejs-1)
+  - [Bun](#bun-1)
   - [Cloudflare Workers](#cloudflare-workers-1)
   - [Web Browser](#web-browser-1)
 - [Contributing](#contributing)
@@ -86,7 +88,7 @@ looks something like this:
 Then, you can use the module from code like this:
 
 ```js
-import { BHttpDecoder, BHttpEncoder } as bhttp from "@dajiaji/bhttp";
+import { BHttpDecoder, BHttpEncoder } from "@dajiaji/bhttp";
 ```
 
 **HTTPS import (deprecated):**
@@ -178,7 +180,33 @@ that looks something like this:
 Then, you can use the module from code like this:
 
 ```js
-import { BHttpDecoder, BHttpEncoder } as bhttp from "@dajiaji/bhttp";
+import { BHttpDecoder, BHttpEncoder } from "@dajiaji/bhttp";
+// ...
+```
+
+### Bun
+
+**Using jsr:**
+
+```sh
+bunx jsr add @dajiaji/bhttp
+```
+
+After adding the package, you will have a dependency entry in `package.json`
+that looks something like this:
+
+```js
+{
+  "dependencies": {
+    "@dajiaji/bhttp": "npm:@jsr/dajiaji__bhttp"
+  }
+}
+```
+
+Then, you can use the module from code like this:
+
+```js
+import { BHttpDecoder, BHttpEncoder } from "@dajiaji/bhttp";
 // ...
 ```
 
@@ -191,13 +219,13 @@ Followings are how to use with typical CDNs. Other CDNs can be used as well.
 ```html
 <!-- use a specific version -->
 <script type="module">
-  import * as bhttp from "https://esm.sh/bhttp-js@0.3.4";
+  import { BHttpDecoder, BhttpEncoder } from "https://esm.sh/bhttp-js@0.3.4";
   // ...
 </script>
 
 <!-- use the latest stable version -->
 <script type="module">
-  import * as bhttp from "https://esm.sh/bhttp-js";
+  import { BHttpDecoder, BhttpEncoder } from "https://esm.sh/bhttp-js";
   // ...
 </script>
 ```
@@ -207,7 +235,7 @@ Followings are how to use with typical CDNs. Other CDNs can be used as well.
 ```html
 <!-- use a specific version -->
 <script type="module">
-  import * as bhttp from "https://unpkg.com/bhttp-js@0.3.4/esm/mod.js";
+  import { BHttpDecoder, BhttpEncoder } from "https://unpkg.com/bhttp-js@0.3.4/esm/mod.js";
   // ...
 </script>
 ```
@@ -217,6 +245,8 @@ Followings are how to use with typical CDNs. Other CDNs can be used as well.
 This section shows some typical usage examples.
 
 ### Deno
+
+See [samples/deno](./samples/deno/).
 
 ```js
 import { BHttpDecoder, BHttpEncoder } from "@dajiaji/bhttp";
@@ -239,6 +269,8 @@ const decodedReq = decoder.decodeRequest(binReq);
 ```
 
 ### Node.js
+
+See [samples/node](./samples/bun/).
 
 ```js
 // via `npm add bhttp-js`
@@ -270,7 +302,33 @@ async function doBHttp() {
 doBHttp();
 ```
 
+### Bun
+
+See [samples/bun](./samples/bun/).
+
+```js
+import { BHttpDecoder, BHttpEncoder } from "@dajiaji/bhttp";
+
+const req = new Request("https://www.example.com/hello.txt", {
+  method: "GET",
+  headers: {
+    "User-Agent": "curl/7.16.3 libcurl/7.16.3 OpenSSL/0.9.7l zlib/1.2.3",
+    "Accept-Language": "en, mi",
+  },
+});
+
+// Encode a Request object to a BHTTP binary string.
+const encoder = new BHttpEncoder();
+const binReq = await encoder.encodeRequest(req);
+
+// Decode the BHTTP binary string to a Request object.
+const decoder = new BHttpDecoder();
+const decodedReq = decoder.decodeRequest(binReq);
+```
+
 ### Cloudflare Workers
+
+See [samples/cloudflare](./samples/cloudflare/).
 
 BHTTP server on Cloutflare Workers:
 
