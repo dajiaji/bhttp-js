@@ -2,7 +2,6 @@
 
 <div align="center">
 <a href="https://jsr.io/@dajiaji/bhttp"><img src="https://jsr.io/badges/@dajiaji/bhttp" alt="JSR"/></a>
-<a href="https://doc.deno.land/https/deno.land/x/bhttp/mod.ts"><img src="https://doc.deno.land/badge.svg" alt="deno doc"/></a>
 <img src="https://github.com/dajiaji/bhttp-js/actions/workflows/ci_browsers.yml/badge.svg" alt="Browser CI" />
 <img src="https://github.com/dajiaji/bhttp-js/actions/workflows/ci_node.yml/badge.svg" alt="Node.js CI" />
 <img src="https://github.com/dajiaji/bhttp-js/actions/workflows/ci.yml/badge.svg" alt="Deno CI" />
