@@ -23,7 +23,7 @@ This module works on web browsers, Node.js, Deno and various other JavaScript ru
 
 <div align="center">
 
-[Documentation](https://doc.deno.land/https://deno.land/x/bhttp/mod.ts)
+[Documentation](https://jsr.io/@dajiaji/bhttp/doc)
 
 </div>
 
@@ -59,47 +59,133 @@ This module works on web browsers, Node.js, Deno and various other JavaScript ru
 
 ### Deno
 
-Using jsr:
+Starting from version 0.3.4, `bhttp-js` is available from the
+[JSR registry](https://jsr.io). From this version onwards, please use JSR import
+instead of HTTPS import in Deno.
+
+**JSR imoprt (recommended from ^0.3.4):**
+
+Add `bhttp-js` package using the commands below:
 
 ```sh
 deno add @dajiaji/bhttp
 ```
 
+After adding the package, you will have an import map entry in `deno.json` that
+looks something like this:
+
 ```js
-import * as bhttp from "@dajiaji/bhttp";
+{
+  "imports": {
+    "@dajiaji/bhttp": "jsr:@dajiaji/bhttp@^<SEMVER>"
+  }
+}
+```
+
+Then, you can use the module from code like this:
+
+```js
+import { BHttpDecoder, BHttpEncoder } as bhttp from "@dajiaji/bhttp";
+```
+
+**HTTPS import (deprecated):**
+
+```js
+import {
+  BHttpDecoder,
+  BHttpEncoder,
+} from "https://deno.land/x/bhttp@<SEMVER>/mod.ts";
 ```
 
 ### Node.js
 
-Using npm:
+**Using npm, yarn or pnpm:**
 
 ```sh
-npm install bhttp-js
+npm add bhttp-js
+yarn add bhttp-js
+pnpm add bhttp-js
 ```
 
-Using yarn:
+After adding the package, you will have a dependency entry in `package.json`
+that looks something like this:
+
+```js
+{
+  "dependencies": {
+    "bhttp-js": "^<SEMVER>"
+  }
+}
+```
+
+Then, you can use the module from code like this:
+
+```js
+import { BHttpDecoder, BHttpEncoder } from "bhttp-js";
+// or as a CommonJS module
+// const { BHttpEncoder, BHttpDecoder } = require("bhttp-js");
+// ...
+```
+
+**Using jsr:**
 
 ```sh
-yarn add bhttp-js
+npx jsr add @dajiaji/bhttp
+yarn dlx jsr add @dajiaji/bhttp
+pnpm dlx jsr add @dajiaji/bhttp
+```
+
+After adding the package, you will have a dependency entry in `package.json`
+that looks something like this:
+
+```js
+{
+  "dependencies": {
+    "@dajiaji/bhttp": "npm:@jsr/dajiaji__bhttp@^<SEMVER>"
+  }
+}
+```
+
+Then, you can use the module from code like this:
+
+```js
+import { BHttpDecoder, BHttpEncoder } from "@dajiaji/bhttp";
+// ...
 ```
 
 ### Cloudflare Workers
 
-Using jsr:
+**Using jsr:**
 
 ```sh
 npx jsr add @dajiaji/bhttp
+yarn dlx jsr add @dajiaji/bhttp
+pnpm dlx jsr add @dajiaji/bhttp
 ```
 
+After adding the package, you will have a dependency entry in `package.json`
+that looks something like this:
+
 ```js
-import * as bhttp from "@dajiaji/bhttp";
+{
+  "dependencies": {
+    "@dajiaji/bhttp": "npm:@jsr/dajiaji__bhttp@^<SEMVER>"
+  }
+}
+```
+
+Then, you can use the module from code like this:
+
+```js
+import { BHttpDecoder, BHttpEncoder } as bhttp from "@dajiaji/bhttp";
+// ...
 ```
 
 ### Web Browser
 
 Followings are how to use with typical CDNs. Other CDNs can be used as well.
 
-Using esm.sh:
+**Using esm.sh:**
 
 ```html
 <!-- use a specific version -->
@@ -115,7 +201,7 @@ Using esm.sh:
 </script>
 ```
 
-Using unpkg:
+**Using unpkg:**
 
 ```html
 <!-- use a specific version -->
@@ -154,7 +240,13 @@ const decodedReq = decoder.decodeRequest(binReq);
 ### Node.js
 
 ```js
-const { BHttpEncoder, BHttpDecoder } = require("bhttp-js");
+// via `npm add bhttp-js`
+import { BHttpDecoder, BHttpEncoder } from "bhttp-js";
+// or as a CommonJS module
+// const { BHttpEncoder, BHttpDecoder } = require("bhttp-js");
+
+// via `npx jsr add @dajiaji/bhttp`
+// import { BHttpDecoder, BHttpEncoder } from "@dajiaji/bhttp";
 
 async function doBHttp() {
   const req = new Request("https://www.example.com/hello.txt", {
@@ -179,52 +271,10 @@ doBHttp();
 
 ### Cloudflare Workers
 
-BHTTP client on Web Browser:
-
-```js
-<html>
-  <head></head>
-  <body>
-    <script type="module">
-      import { BHttpEncoder, BHttpDecoder } from 'https://esm.sh/bhttp-js@0.3.4';
-
-      globalThis.doBHttp = async () => {
-
-        try {
-          const encoder = new BHttpEncoder();
-          const req = new Request("https://target.example/query?foo=bar");
-          const bReq = await encoder.encodeRequest(req);
-          const res = await fetch("https://bin.example/to_target", {
-            method: "POST",
-            headers: {
-              "Content-Type": "message/bhttp",
-            },
-            body: bReq,
-          });
-
-          const decoder = new BHttpDecoder();
-          const decodedRes = decoder.decodeResponse(await res.arrayBuffer());
-          // decodedRes.status === 200;
-          const body = await decodedRes.text();
-          // body === "baz"
-
-        } catch (err) {
-          alert(err.message);
-        }
-      }
-      
-    </script>
-    <button type="button" onclick="doBHttp()">do BHTTP</button>
-  </body>
-</html>
-```
-
-### Web Browser
-
 BHTTP server on Cloutflare Workers:
 
 ```js
-import { BHttpDecoder, BHttpEncoder } from "./bhttp.js";
+import { BHttpDecoder, BHttpEncoder } from "@dajiaji/bhttp";
 
 export default {
   async fetch(request) {
@@ -261,6 +311,48 @@ export default {
     );
   },
 };
+```
+
+### Web Browser
+
+BHTTP client on Web Browser:
+
+```js
+<html>
+  <head></head>
+  <body>
+    <script type="module">
+      import { BHttpEncoder, BHttpDecoder } from "https://esm.sh/bhttp-js@0.3.4";
+
+      globalThis.doBHttp = async () => {
+
+        try {
+          const encoder = new BHttpEncoder();
+          const req = new Request("https://target.example/query?foo=bar");
+          const bReq = await encoder.encodeRequest(req);
+          const res = await fetch("https://bin.example/to_target", {
+            method: "POST",
+            headers: {
+              "Content-Type": "message/bhttp",
+            },
+            body: bReq,
+          });
+
+          const decoder = new BHttpDecoder();
+          const decodedRes = decoder.decodeResponse(await res.arrayBuffer());
+          // decodedRes.status === 200;
+          const body = await decodedRes.text();
+          // body === "baz"
+
+        } catch (err) {
+          alert(err.message);
+        }
+      }
+      
+    </script>
+    <button type="button" onclick="doBHttp()">do BHTTP</button>
+  </body>
+</html>
 ```
 
 ## Contributing
