@@ -105,9 +105,9 @@ import {
 **Using npm, yarn or pnpm:**
 
 ```sh
-npm add bhttp-js
+npm install bhttp-js
 yarn add bhttp-js
-pnpm add bhttp-js
+pnpm install bhttp-js
 ```
 
 After adding the package, you will have a dependency entry in `package.json`
