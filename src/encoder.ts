@@ -168,7 +168,10 @@ export class BHttpEncoder {
       ctx.url.protocol.slice(0, ctx.url.protocol.length - 1),
     );
     this.encodeVliAndValue(ctx, ctx.url.host);
-    this.encodeVliAndValue(ctx, ctx.url.pathname + ctx.url.search);
+    this.encodeVliAndValue(
+      ctx,
+      ctx.url.pathname + ctx.url.search,
+    );
 
     // Known Length Headers
     this.encodeVli(ctx, ctx.headerSize);
