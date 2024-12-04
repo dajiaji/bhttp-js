@@ -31,6 +31,33 @@ describe("BHttpDecoder/Encoder", () => {
       );
       assertEquals(decodedReq.headers.get("accept-language"), "en, mi");
     });
+
+    it("should encode and decode a GET request with query parameters.", async () => {
+      const req = new Request("https://www.example.com/query?foo=bar", {
+        method: "GET",
+        headers: {
+          "User-Agent": "curl/7.16.3 libcurl/7.16.3 OpenSSL/0.9.7l zlib/1.2.3",
+          "Accept-Language": "en, mi",
+        },
+      });
+      // Decode a Request object to a BHTTP binary string.
+      const encoder = new BHttpEncoder();
+      const binReq = await encoder.encodeRequest(req);
+
+      // Decode the BHTTP binary string to a Request object.
+      const decoder = new BHttpDecoder();
+      let decodedReq = decoder.decodeRequest(binReq);
+      // ArrayBuffer is also supported.
+      decodedReq = decoder.decodeRequest(binReq.buffer);
+
+      // assert
+      assertEquals(
+        decodedReq.headers.get("user-agent"),
+        "curl/7.16.3 libcurl/7.16.3 OpenSSL/0.9.7l zlib/1.2.3",
+      );
+      assertEquals(decodedReq.headers.get("accept-language"), "en, mi");
+      assertEquals(decodedReq.url, "https://www.example.com/query?foo=bar");
+    });
   });
 
   describe("POST", () => {

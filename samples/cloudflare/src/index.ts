@@ -14,7 +14,7 @@
 import { BHttpDecoder, BHttpEncoder } from "@dajiaji/bhttp";
 
 export default {
-  async fetch(request): Promise<Response> {
+  async fetch(request: Request): Promise<Response> {
     const decoder = new BHttpDecoder();
     const encoder = new BHttpEncoder();
     // const url = new URL(request.url);

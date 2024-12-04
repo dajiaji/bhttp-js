@@ -12,7 +12,7 @@ export async function testBHttpGateway(request) {
       }
       const reqBody = await request.arrayBuffer();
       const decodedReq = decoder.decodeRequest(reqBody);
-      if (decodedReq.url !== "https://ogr.example/query") {
+      if (!decodedReq.url.startsWith("https://ogr.example/query")) {
         throw new Error("Invalid destination.");
       }
       const res = new Response("baz", {
@@ -23,6 +23,7 @@ export async function testBHttpGateway(request) {
         headers: { "Content-Type": "message/bhttp" },
       });
     } catch (err) {
+      console.error(err);
       return new Response(
         encoder.encodeResponse(
           new Response("ng: " + err.message, { status: 400 }),

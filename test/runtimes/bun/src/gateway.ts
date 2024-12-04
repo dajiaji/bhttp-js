@@ -12,7 +12,7 @@ export async function testBHttpGateway(request: Request): Promise<Response> {
       }
       const reqBody = await request.arrayBuffer();
       const decodedReq = decoder.decodeRequest(reqBody);
-      if (decodedReq.url !== "https://ogr.example/query") {
+      if (!decodedReq.url.startsWith("https://ogr.example/query")) {
         throw new Error("Invalid destination.");
       }
       const res = new Response("baz", {
@@ -22,10 +22,10 @@ export async function testBHttpGateway(request: Request): Promise<Response> {
       return new Response(bRes, {
         headers: { "Content-Type": "message/bhttp" },
       });
-    } catch (err) {
+    } catch (err: unknown) {
       return new Response(
-        encoder.encodeResponse(
-          new Response("ng: " + err.message, { status: 400 }),
+        await encoder.encodeResponse(
+          new Response("ng: " + (err as Error).message, { status: 400 }),
         ),
         { status: 400, headers: { "Content-Type": "message/bhttp" } },
       );
@@ -54,10 +54,10 @@ export async function testBHttpGateway(request: Request): Promise<Response> {
         status: 201,
         headers: { "Content-Type": "message/bhttp" },
       });
-    } catch (err) {
+    } catch (err: unknown) {
       return new Response(
         await encoder.encodeResponse(
-          new Response("ng: " + err.message, { status: 400 }),
+          new Response("ng: " + (err as Error).message, { status: 400 }),
         ),
         { status: 400, headers: { "Content-Type": "message/bhttp" } },
       );
