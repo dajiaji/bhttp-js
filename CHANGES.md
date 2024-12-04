@@ -2,6 +2,21 @@
 
 ## Unreleased
 
+## Version 0.3.6
+
+Released 2024-12-05
+
+- [(#194) Fix URL encoding not to drop query parameters.](https://github.com/dajiaji/bhttp-js/pull/194)
+- [(#193) Remove redundant samples from README.](https://github.com/dajiaji/bhttp-js/pull/193)
+- [(#192) Update README.](https://github.com/dajiaji/bhttp-js/pull/192)
+- Update dev dependencies.
+  - [(#190) Bump @playwright/test to 1.49.0.](https://github.com/dajiaji/bhttp-js/pull/190)
+  - [(#189) Bump @fastly/js-compute to 3.27.7.](https://github.com/dajiaji/bhttp-js/pull/189)
+  - [(#183) Bump cookie to 0.7.2 in samples.](https://github.com/dajiaji/bhttp-js/pull/183)
+  - [(#183) Bump youch to 3.3.4 in samples.](https://github.com/dajiaji/bhttp-js/pull/183)
+  - [(#181) Bump vite to 5.4.7 in samples.](https://github.com/dajiaji/bhttp-js/pull/181)
+  - [(#180) Bump rollup to 4.22.4 in samples.](https://github.com/dajiaji/bhttp-js/pull/180)
+
 ## Version 0.3.5
 
 Released 2024-08-13
