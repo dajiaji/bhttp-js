@@ -50,9 +50,8 @@ class RequestEncoderContext extends EncoderContext {
         len += this.url.protocol.length - 1;
         len += this.calculateVliSize(this.url.host.length);
         len += this.url.host.length;
-        len += this.calculateVliSize(this.url.pathname.length + this.url.search.length);
+        len += this.calculateVliSize(this.url.pathname.length);
         len += this.url.pathname.length;
-        len += this.url.search.length;
         // Known Length Headers
         this.headerSize = 0;
         this.request.headers.forEach((value, key) => {
@@ -132,7 +131,7 @@ export class BHttpEncoder {
         this.encodeVliAndValue(ctx, ctx.request.method);
         this.encodeVliAndValue(ctx, ctx.url.protocol.slice(0, ctx.url.protocol.length - 1));
         this.encodeVliAndValue(ctx, ctx.url.host);
-        this.encodeVliAndValue(ctx, ctx.url.pathname + ctx.url.search);
+        this.encodeVliAndValue(ctx, ctx.url.pathname);
         // Known Length Headers
         this.encodeVli(ctx, ctx.headerSize);
         ctx.request.headers.forEach((value, key) => {
