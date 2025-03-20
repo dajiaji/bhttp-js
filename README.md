@@ -51,7 +51,7 @@ This module works on web browsers, Node.js, Deno and various other JavaScript ru
 interface of
 [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API):
 
-- **Deno**: 1.x
+- **Deno**: 1.x, 2.x
 - **Node.js**: 18.x, 19.x, 20.x, 21.x, 22.x, 23.x
 - **Bun**: 0.x, 1.x
 - **Cloudflare Workers**
