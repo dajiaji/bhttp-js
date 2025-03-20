@@ -1,12 +1,37 @@
 import * as consts from "./consts.js";
 import * as errors from "./errors.js";
 class EncoderContext {
-    buf;
-    p = 0;
-    framingIndicator = 0;
-    headerSize;
-    body;
     constructor() {
+        Object.defineProperty(this, "buf", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "p", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 0
+        });
+        Object.defineProperty(this, "framingIndicator", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 0
+        });
+        Object.defineProperty(this, "headerSize", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "body", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.buf = new Uint8Array(0);
         this.headerSize = 0;
         this.body = new Uint8Array(0);
@@ -28,10 +53,20 @@ class EncoderContext {
     }
 }
 class RequestEncoderContext extends EncoderContext {
-    request;
-    url;
     constructor(request) {
         super();
+        Object.defineProperty(this, "request", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "url", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.request = request;
         this.url = new URL(request.url);
     }
@@ -73,9 +108,14 @@ class RequestEncoderContext extends EncoderContext {
     }
 }
 class ResponseEncoderContext extends EncoderContext {
-    response;
     constructor(response) {
         super();
+        Object.defineProperty(this, "response", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.response = response;
     }
     async setup() {
@@ -108,8 +148,13 @@ class ResponseEncoderContext extends EncoderContext {
     }
 }
 export class BHttpEncoder {
-    _te;
     constructor() {
+        Object.defineProperty(this, "_te", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this._te = new TextEncoder();
     }
     async encodeRequest(src) {
