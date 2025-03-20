@@ -37,6 +37,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 18.x
-      - uses: microsoft/playwright-github-action@v1
       - working-directory: ./test/runtimes/browsers
-        run: npm install && npx playwright install && npx playwright test
+        run: npm install && npx playwright install-deps && npx playwright install && npx playwright test
