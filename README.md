@@ -52,7 +52,7 @@ interface of
 [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API):
 
 - **Deno**: 1.x
-- **Node.js**: 18.x, 19.x, 20.x, 21.x, 22.x
+- **Node.js**: 18.x, 19.x, 20.x, 21.x, 22.x, 23.x
 - **Bun**: 0.x, 1.x
 - **Cloudflare Workers**
 - **@fastly/js-compute**
