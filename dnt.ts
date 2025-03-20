@@ -1,12 +1,36 @@
 import { build, emptyDir } from "@deno/dnt";
 
 await emptyDir("./npm");
-await emptyDir("test/runtimes/browsers/node_modules");
-await emptyDir("test/runtimes/bun/node_modules");
-await emptyDir("test/runtimes/cloudflare/node_modules");
-await emptyDir("test/runtimes/fastly/node_modules");
 await emptyDir("samples/bun/node_modules");
 await emptyDir("samples/cloudflare/node_modules");
+try {
+  await Deno.remove("test/runtimes/browsers/node_modules", {
+    recursive: true,
+  });
+} catch {
+  // ignore
+}
+try {
+  await Deno.remove("test/runtimes/bun/node_modules", {
+    recursive: true,
+  });
+} catch {
+  // ignore
+}
+try {
+  await Deno.remove("test/runtimes/cloudflare/node_modules", {
+    recursive: true,
+  });
+} catch {
+  // ignore
+}
+try {
+  await Deno.remove("test/runtimes/fastly/node_modules", {
+    recursive: true,
+  });
+} catch {
+  // ignore
+}
 
 await build({
   entryPoints: ["./mod.ts"],
@@ -17,12 +41,12 @@ await build({
   scriptModule: "umd",
   importMap: "./deno.json",
   compilerOptions: {
-    target: "ES2022",
-    lib: ["ES2023", "DOM"],
+    lib: ["ES2022", "DOM"],
   },
   shims: {
     deno: "dev",
   },
+  testPattern: "test/**/*.test.ts",
   package: {
     name: "bhttp-js",
     version: Deno.args[0],
@@ -34,8 +58,10 @@ await build({
     },
     homepage: "https://github.com/dajiaji/bhttp-js#readme",
     license: "MIT",
+    module: "./esm/mod.js",
     main: "./script/mod.js",
-    types: "./types/mod.d.ts",
+    types: "./esm/mod.d.ts",
+    sideEffects: false,
     exports: {
       ".": {
         "import": "./esm/mod.js",
