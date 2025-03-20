@@ -19,7 +19,7 @@ jobs:
           deno-version: v1.x
       - uses: actions/setup-node@v4
         with:
-          node-version: v18.x
+          node-version: 22.x
       - name: Run dnt
         run: deno run -A dnt.ts 0.0.0
       - name: Run npm pack
