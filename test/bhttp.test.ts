@@ -22,7 +22,7 @@ describe("BHttpDecoder/Encoder", () => {
       const decoder = new BHttpDecoder();
       let decodedReq = decoder.decodeRequest(binReq);
       // ArrayBuffer is also supported.
-      decodedReq = decoder.decodeRequest(binReq.buffer);
+      decodedReq = decoder.decodeRequest(binReq.buffer as ArrayBuffer);
 
       // assert
       assertEquals(
@@ -48,7 +48,7 @@ describe("BHttpDecoder/Encoder", () => {
       const decoder = new BHttpDecoder();
       let decodedReq = decoder.decodeRequest(binReq);
       // ArrayBuffer is also supported.
-      decodedReq = decoder.decodeRequest(binReq.buffer);
+      decodedReq = decoder.decodeRequest(binReq.buffer as ArrayBuffer);
 
       // assert
       assertEquals(
