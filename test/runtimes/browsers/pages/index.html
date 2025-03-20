@@ -182,13 +182,18 @@
           if (res.status !== 200) {
             throw new Error("status mismatch.");
           }
-          if (res.headers.get("date") !== "Mon, 27 Jul 2009 12:28:53 GMT") {
+          if (
+            res.headers.get("date") !== "Mon, 27 Jul 2009 12:28:53 GMT"
+          ) {
             throw new Error("date mismatch.");
           }
           if (res.headers.get("server") !== "Apache") {
             throw new Error("server mismatch.");
           }
-          if (res.headers.get("last-modified") != "Wed, 22 Jul 2009 19:15:56 GMT") {
+          if (
+            res.headers.get("last-modified") !=
+              "Wed, 22 Jul 2009 19:15:56 GMT"
+          ) {
             throw new Error("last-modified mismatch.");
           }
           if (res.headers.get("etag") !== '"34aa387-d-1568eb00"') {
@@ -216,13 +221,18 @@
           if (res.status !== 200) {
             throw new Error("status mismatch.");
           }
-          if (res.headers.get("date") !== "Mon, 27 Jul 2009 12:28:53 GMT") {
+          if (
+            res.headers.get("date") !== "Mon, 27 Jul 2009 12:28:53 GMT"
+          ) {
             throw new Error("date mismatch.");
           }
           if (res.headers.get("server") !== "Apache") {
             throw new Error("server mismatch.");
           }
-          if (res.headers.get("last-modified") != "Wed, 22 Jul 2009 19:15:56 GMT") {
+          if (
+            res.headers.get("last-modified") !=
+              "Wed, 22 Jul 2009 19:15:56 GMT"
+          ) {
             throw new Error("last-modified mismatch.");
           }
           if (res.headers.get("etag") !== '"34aa387-d-1568eb00"') {

@@ -125,7 +125,10 @@ Followings are how to use with typical CDNs. Other CDNs can be used as well.
 ```html
 <!-- use a specific version -->
 <script type="module">
-  import { BHttpDecoder, BhttpEncoder } from "https://esm.sh/bhttp-js@<SEMVER>";
+  import {
+    BHttpDecoder,
+    BhttpEncoder,
+  } from "https://esm.sh/bhttp-js@<SEMVER>";
   // ...
 </script>
 
@@ -198,12 +201,17 @@ BHTTP client on Web Browser:
   <head></head>
   <body>
     <script type="module">
-      import { BHttpDecoder, BHttpEncoder } from "https://esm.sh/bhttp-js@<SEMVER>";
+      import {
+        BHttpDecoder,
+        BHttpEncoder,
+      } from "https://esm.sh/bhttp-js@<SEMVER>";
 
       globalThis.doBHttp = async () => {
         try {
           const encoder = new BHttpEncoder();
-          const req = new Request("https://target.example/query?foo=bar");
+          const req = new Request(
+            "https://target.example/query?foo=bar",
+          );
           const bReq = await encoder.encodeRequest(req);
           const res = await fetch("https://bin.example/to_target", {
             method: "POST",
@@ -214,7 +222,9 @@ BHTTP client on Web Browser:
           });
 
           const decoder = new BHttpDecoder();
-          const decodedRes = decoder.decodeResponse(await res.arrayBuffer());
+          const decodedRes = decoder.decodeResponse(
+            await res.arrayBuffer(),
+          );
           // decodedRes.status === 200;
           const body = await decodedRes.text();
           // body === "baz"

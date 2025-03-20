@@ -127,7 +127,7 @@ describe("BHttpDecoder/Encoder", () => {
       const decoder = new BHttpDecoder();
       let res = decoder.decodeResponse(exampleData);
       // ArrayBuffer is also supported.
-      res = decoder.decodeResponse(exampleData.buffer);
+      res = decoder.decodeResponse(exampleData.buffer as ArrayBuffer);
 
       // assert
       assertEquals(res.status, 200);
