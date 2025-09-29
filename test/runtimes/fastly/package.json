@@ -8,6 +8,6 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "@fastly/js-compute": "^3.34.0"
+    "@fastly/js-compute": "^3.35.0"
   }
 }
